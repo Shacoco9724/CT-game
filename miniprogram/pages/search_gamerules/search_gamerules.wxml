@@ -1,0 +1,16 @@
+<!-- /* pages/index01/index01.wxml */
+<view class="demo-box">
+<text>
+ 1.系统随机生成1-100的数字让玩家猜
+ 2.玩家共有5次机会
+ 3.在5次之内玩家猜成功
+ 4.点击开始游戏进入界面
+ 5.猜对或猜对玩家可重新开始
+</text>
+</view> -->
+<view id="container">
+    <view wx:for="{{newArr}}" class='cards'>
+        <view class="card card_a" style='display:{{item.showA}}' bindtap='change' data-id='{{item.id}}'>A</view>
+        <view class="card card_b" style='display:{{item.showB}}' bindtap='change' data-id='{{item.id}}'>B</view>
+    </view>
+</view>

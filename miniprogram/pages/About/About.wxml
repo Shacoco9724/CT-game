@@ -1,0 +1,9 @@
+<!--pages/index02/index02.wxml-->
+<view class="demo-box">
+<text>
+ 1.游戏仅供娱乐
+ 2.此游戏有很多不足
+ 3.玩家可以提供您宝贵意见
+ 4.玩家根据提示猜，会有很大帮助
+</text>
+</view>
