@@ -15,7 +15,7 @@ Page({
           { index: 4 },
           { index: 5 },
           { index: 6 },
-          { index: 7 },
+          { index: 9 },
         ],
         disabled: true,
         elements:[]
@@ -119,9 +119,12 @@ Page({
         let data = this.data.data
         for(var j = 0; j<list.length; j++){
           const item = list[j];
+    
           if(x>item.left && x<item.right && y>item.top && y<item.bottom){
             const endIndex = item.dataset.index;
             const beginIndex = this.data.beginIndex;
+            // 加了这个条件 是保证不能让不相邻的元素进行交换
+            if(Math.abs(beginIndex-endIndex)<=1){
             //向后移动
             if (beginIndex < endIndex) {
               let tem = data[beginIndex];
@@ -142,6 +145,7 @@ Page({
             this.setData({
               data: data
             })
+        }
           }
         }
         this.setData({
@@ -155,7 +159,7 @@ Page({
           const x = e.touches[0].pageX
           const y = e.touches[0].pageY
           this.setData({
-            x: x - 75,
+            x: x - 35,
             y: y - 45
           })
         }

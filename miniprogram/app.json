@@ -3,6 +3,9 @@
     "pages/index/index",
     "pages/search_game/search_game",
     "pages/bubblesort_game/bubblesort_game",
+    "pages/stack-queue_game/stack-queue_game",
+    "pages/binarytree_game/binarytree_game",
+    "pages/huffmancode_game/huffmancode_game",
     "pages/search_gamerules/search_gamerules",
     "pages/About/About",
     "pages/getOpenId/index",
@@ -21,7 +24,7 @@
     "backgroundColor": "#F6F6F6",
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#F6F6F6",
-    "navigationBarTitleText": "云开发 QuickStart",
+    "navigationBarTitleText": "计算思维小游戏",
     "navigationBarTextStyle": "black"
   },
   "sitemapLocation": "sitemap.json",

@@ -1,11 +1,11 @@
 /* pages/index03/index03.wxss */
 .box2{
-  margin-top: 200rpx;
+  margin-top: 60rpx;
   width: 100%;
   height: 100rpx;
 }
 .box3{
-  margin-top: 240rpx;
+  margin-top: 20rpx;
   width: 100%;
   height: 100rpx;
 }

@@ -1,5 +1,7 @@
-<view class='outer' >
+<view class='outer' style="background:url('../../images/bg2.jpeg');">
+  
   <view class='inner'>
+    <view class="title-text">亲爱的同学，来试试下面的数字排序吧！</view>
     <movable-area>
       <block wx:for="{{data}}">
         <view class='item'  id="{{item.index}}" data-index='{{index}}' bindlongpress='_longtap' bindtouchstart='touchs' bindtouchend='touchend' bindtouchmove='touchm'>
@@ -11,5 +13,9 @@
         </view>
       </movable-view>
     </movable-area>
+    <view class="hinder-area">提示区域：
+      只能交换相邻的两张卡牌哦，
+      从前面开始按从小到大的顺序进行排列
+    </view>
   </view>
 </view>
