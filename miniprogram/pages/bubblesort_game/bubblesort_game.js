@@ -20,7 +20,31 @@ Page({
         disabled: true,
         elements:[]
       },
-    
+    // 产生随机数事件
+    changeNumber:function(e){
+        const list = this.data.elements;
+        let rand = this.data.data
+        // rand=[];
+        for(var j=0;j<list.length;j++){
+            const item = list[j];
+
+            const index = item.dataset.index
+            // var r=0;
+            while(index==0){
+            index=parseInt(Math.random() * 32);              
+            }    //生成不为0的数                         
+            index=(index/Math.pow(10,2)).toFixed(2).substr(2)  //控制生成数的形式为两位，在一位数的前面补“0”
+
+            rand[j]=index;
+            for (var i=0;i<j;i++){
+            if (rand[i]==index){j=j-1;}
+            }    //保证与之前生成的数不重复            
+            // console.log(rand[i]);
+        }
+        this.setData({
+            data:rand
+        })
+    },
       /**
        * 生命周期函数--监听页面加载
        */
