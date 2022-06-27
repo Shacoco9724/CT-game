@@ -1,38 +1,45 @@
 <!--pages/index03/index03.wxml-->
 <!-- 首页效果图 -->
-<view class="box2">
-<navigator url="../bubblesort_game/bubblesort_game">
-        <button type="primary">冒泡排序开始游戏</button>
-    </navigator>
-</view>
-<view class="box2">
-<!-- url是我要跳转的页面 -->
-    <navigator url="../search_game/search_game">
-        <button type="primary">查找算法开始游戏</button>
-    </navigator>
-</view>
-<view class="box2">
-<navigator url="../stack-queue_game/stack-queue_game">
-        <button type="primary">栈和队列开始游戏</button>
-    </navigator>
-</view>
-<view class="box2">
-<navigator url="../binarytree_game/binarytree_game">
-        <button type="primary">二叉树开始游戏</button>
-    </navigator>
-</view>
-<view class="box2">
-<navigator url="../huffmancode_game/huffmancode_game">
-        <button type="primary">哈夫曼编码游戏</button>
-    </navigator>
-</view>
-<view class="box2">
-    <navigator url="../search_gamerules/search_gamerules">
-        <button type="warn">游戏规则</button>
-    </navigator>
-</view>
-<view class="box3">
-    <navigator url="../About/About">
-        <button type="default">关于其他</button>
-    </navigator>
+<view class="index" style="background:url('../../images/bg2.jpeg');">
+    <view class="index1">
+        <view class="box2">
+        <navigator url="../bubblesort_game/bubblesort_game">
+                <button type="primary">冒泡排序开始游戏</button>
+            </navigator>
+        </view>
+        <view class="box2">
+        <!-- url是我要跳转的页面 -->
+            <navigator url="../search_game/search_game">
+                <button type="primary">查找算法开始游戏</button>
+            </navigator>
+        </view>
+        <view class="box2">
+        <navigator url="../stack-queue_game/stack-queue_game">
+                <button type="primary">栈和队列开始游戏</button>
+            </navigator>
+        </view>
+        <view class="box2">
+        <navigator url="../binarytree_game/binarytree_game">
+                <button type="primary">二叉树开始游戏</button>
+            </navigator>
+        </view>
+        <view class="box2">
+        <navigator url="../huffmancode_game/huffmancode_game">
+                <button type="primary">哈夫曼编码游戏</button>
+            </navigator>
+        </view>
+    </view>
+    <view class="index2">
+        <view class="box3">
+        <navigator url="../search_gamerules/search_gamerules">
+            <button type="warn">游戏规则</button>
+        </navigator>
+        </view>
+        <view class="box3">
+            <navigator url="../About/About">
+                <button type="default">关于其他</button>
+            </navigator>
+        </view>
+    </view>
+    
 </view>

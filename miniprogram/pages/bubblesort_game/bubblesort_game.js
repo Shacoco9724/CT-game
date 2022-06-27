@@ -9,40 +9,27 @@ Page({
         flag:false,
         x:0,
         y:0,
-        data:[{index:1},
-          { index: 2 },
-          { index: 3 },
-          { index: 4 },
-          { index: 5 },
-          { index: 6 },
-          { index: 9 },
+    // 进入页面开始显示的数字：以随机数显示
+        data:[{index:Math.round(Math.random()*100)},
+          { index: Math.round(Math.random()*100) },
+          { index: Math.round(Math.random()*100) },
+          { index: Math.round(Math.random()*100) },
+          { index: Math.round(Math.random()*100) },
+          { index: Math.round(Math.random()*100) },
+          { index: Math.round(Math.random()*100) },
         ],
         disabled: true,
         elements:[]
       },
     // 产生随机数事件
     changeNumber:function(e){
-        const list = this.data.elements;
-        let rand = this.data.data
-        // rand=[];
-        for(var j=0;j<list.length;j++){
-            const item = list[j];
-
-            const index = item.dataset.index
-            // var r=0;
-            while(index==0){
-            index=parseInt(Math.random() * 32);              
-            }    //生成不为0的数                         
-            index=(index/Math.pow(10,2)).toFixed(2).substr(2)  //控制生成数的形式为两位，在一位数的前面补“0”
-
-            rand[j]=index;
-            for (var i=0;i<j;i++){
-            if (rand[i]==index){j=j-1;}
-            }    //保证与之前生成的数不重复            
-            // console.log(rand[i]);
+        let data = this.data.data;
+        for(var i = 0;i<7;i++)
+        {
+            data[i].index = Math.round(Math.random()*100);
         }
         this.setData({
-            data:rand
+            data:data
         })
     },
       /**
