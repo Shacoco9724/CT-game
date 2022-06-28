@@ -119,7 +119,7 @@ Page({
           beginIndex:e.currentTarget.dataset.index
         })
       },
-      //触摸结束
+      //触摸结束（完成数字交换）
       touchend:function(e){
         if (!this.data.flag) {
           return;
@@ -141,6 +141,7 @@ Page({
               let tem = data[beginIndex];
               for (let i = beginIndex; i < endIndex; i++) {
                 data[i] = data[i + 1]
+    
               }
               data[endIndex] = tem;
             }

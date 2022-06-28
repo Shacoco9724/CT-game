@@ -1,6 +1,20 @@
 <!--pages/index03/index03.wxml-->
 <!-- 首页效果图 -->
 <view class="index" style="background:url('../../images/bg2.jpeg');">
+
+    <view class="cover">
+    <van-image
+    round
+    fit="cover"
+    width="180rpx"
+    height="180rpx"
+    bindtap="handleTapAvatar"
+    src="{{userInfo.avatarUrl}}"/>
+    <view bindtap="handleTapLogin">
+    {{userInfo.nickName}}
+    </view>
+    </view>
+
     <view class="index1">
         <view class="box2">
         <navigator url="../bubblesort_game/bubblesort_game">

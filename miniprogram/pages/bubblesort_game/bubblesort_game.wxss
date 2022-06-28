@@ -23,7 +23,7 @@ page{
 }
 movable-area{
     width: 100%;
-    height: 28%;
+    height: 23%;
 }
 .item{
     display: inline-block;
