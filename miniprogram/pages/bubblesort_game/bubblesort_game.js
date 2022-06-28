@@ -9,6 +9,8 @@ Page({
         flag:false,
         x:0,
         y:0,
+        maopaotimes:0,
+        changetimes:0,
     // 进入页面开始显示的数字：以随机数显示
         data:[{index:Math.round(Math.random()*100)},
           { index: Math.round(Math.random()*100) },
@@ -21,6 +23,7 @@ Page({
         disabled: true,
         elements:[]
       },
+
     // 产生随机数事件
     changeNumber:function(e){
         let data = this.data.data;
@@ -48,6 +51,8 @@ Page({
               elements: result
             })
             }).exec()
+
+        this.data.maopaotimes+=1;
       },
     
       /**
@@ -153,18 +158,23 @@ Page({
               }
               data[endIndex] = tem;
             }
-    
             this.setData({
               data: data
             })
+            }
+            }
         }
-          }
-        }
-        this.setData({
-          hidden: true,
-          flag: false
-        })
-      },
+        this.setData({
+            hidden: true,
+            flag: false
+        })
+        this.data.changetimes+=1;
+        var developer = {
+            mpt:this.data.maopaotimes,
+            ct:this.data.changetimes
+        }
+        wx.setStorageSync('developer',developer);
+    },
       //滑动
       touchm:function(e){
         if(this.data.flag){
@@ -175,5 +185,5 @@ Page({
             y: y - 45
           })
         }
-      }
+      } 
     })

@@ -1,0 +1,14 @@
+<!--pages/login/login.wxml-->
+<view class="cover" style="background: url('../../images/bg2.jpeg');">
+    <van-image
+    round
+    fit="cover"
+    width="200rpx"
+    height="200rpx"
+    src="{{userInfo.avatarUrl}}"/>
+    <view bindtap="handleTapLogin">
+        {{userInfo.nickName}}
+    </view>
+    <button bindtap="skip">跳到首页</button>
+ </view>
+

@@ -1,0 +1,14 @@
+/* pages/login/login.wxss */
+/* pages/me/me.wxss */
+.cover{
+  background-color: #f7e0df;
+  padding: 50rpx;
+  text-align: center;
+  color: #fff;
+  height: 1400rpx;
+}
+
+my-button {
+  display: block;
+  margin: 10rpx;
+}
