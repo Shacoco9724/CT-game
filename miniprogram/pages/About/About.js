@@ -61,5 +61,24 @@ Page({
      */
     onShareAppMessage: function () {
 
+    },
+
+    btnsub(res){
+        wx.showLoading({
+          title: '数据提交中。。',
+        })
+        let db = wx.cloud.database()
+        var {title,author,content}=res.detail.value;
+        db.collection("demolist").add({
+            data:{
+                title:title,
+                author:author,
+                content:content
+            }
+        }).then(res=>{
+            wx.hideLoading({
+              success: (res) => {},
+            })
+        })
     }
 })

@@ -47,9 +47,13 @@ movable-area{
     width: 84rpx;
     height: 160rpx;
     border: 1px solid blue;
+    /* background-color: yellow; */
 }
 .hinder-area{
     text-align: center;
     margin-top: 200rpx;
     color:rgb(255, 255, 0);
+}
+.changeText{
+    color: green;
 }

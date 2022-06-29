@@ -72,16 +72,13 @@ Page({
     onShareAppMessage: function () {
 
     },
-    
     //点击登录后执行
   handleTapLogin:function(){
     if(this.data.islogin){
        return; //若已经登录,则直接返回,不会执行后面的语句
        
     }
-    
     wx.getUserProfile({
-
       desc: '获取用户信息用于维护会员权益',
       lang:'zh_CN',
       success:(res)=>{
@@ -105,12 +102,26 @@ Page({
              sex:'女',
         }
         })
+       
+
         //去自己家数据库进行查询,看一下当前用户的最新数据
         this.login()
         
+        let db = wx.cloud.database()
+        var userInfo = res.userInfo;
+        db.collection("users").add({
+          data:{
+            userInfo:{
+               _id: res.userInfo._id,
+               nickName: res.userInfo.nickName,
+               mpt:developer.mpt,
+               ct:developer.ct,
+               sex:'男',
+            }
+          }
+        })
       }
     })
-    
   },
 
 //   跳转到游戏选择页面

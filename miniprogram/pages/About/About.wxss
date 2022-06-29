@@ -11,3 +11,9 @@
     margin: 0 50rpx;
     line-height: 100rpx;
   }
+  input{
+    border: 1px solid grey;
+ }
+ textarea{
+   border: 1px solid grey;
+ }

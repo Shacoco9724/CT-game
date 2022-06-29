@@ -17,9 +17,10 @@
       <view class="hinder-area" bindtap="touchend" >点击这里，上面的卡牌可以随机分配数字 </view>
       <button  bindtap="changeNumber">点击我，随机数</button>
     </view> 
-    <view>提示区域：
+    <view bindtap="changeText" class="changeText">提示区域：
       只能交换相邻的两张卡牌哦，
       从前面开始按从小到大的顺序进行排列
+      {{textarea}}
     </view>
   </view>
 </view>

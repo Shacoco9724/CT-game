@@ -11,6 +11,7 @@ Page({
         y:0,
         maopaotimes:0,
         changetimes:0,
+        textarea:'',
     // 进入页面开始显示的数字：以随机数显示
         data:[{index:Math.round(Math.random()*100)},
           { index: Math.round(Math.random()*100) },
@@ -159,8 +160,20 @@ Page({
               data[endIndex] = tem;
             }
             this.setData({
-              data: data
+                data: data,
+                textarea:'做的好，继续加油！'
             })
+            }
+            else{
+                // wx.showToast({
+                //   title: '不能交换不相邻的元素哦',
+                //   icon:"none",
+                //   duration:2000
+                // })
+                this.setData({
+                    textarea:'不能交换哦'
+                })
+                // this.data.textarea = '不能交换不相邻的元素哈哈哈哈哈'
             }
             }
         }
@@ -185,5 +198,9 @@ Page({
             y: y - 45
           })
         }
-      } 
+      },
+    // 改变提示区域的文本
+    // changeText:function(){
+    //     this.data.textarea = '不能交换不相邻的元素哈哈哈哈哈'
+    // } 
     })
