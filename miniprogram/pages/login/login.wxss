@@ -1,11 +1,10 @@
 /* pages/login/login.wxss */
 /* pages/me/me.wxss */
 .cover{
-  background-color: #f7e0df;
+  /* background-color: #f03d37; */
   padding: 50rpx;
   text-align: center;
-  color: #fff;
-  height: 1400rpx;
+  color: rgb(0, 0, 0);
 }
 
 my-button {

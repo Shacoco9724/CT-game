@@ -13,10 +13,13 @@ exports.main = async (event, context) => {
     //     appid: wxContext.APPID,
     //     unionid: wxContext.UNIONID,
     // }
-    return await db.collection('users').add({
-        data:{
-            description: event.description,
-            due: event.due
-        }
-    })
+    let openid = cloud.getWXContent()
+    return openid
+    // return await db.collection('users').add({
+    //     data:{
+    //         description: event.description,
+    //         due: event.due,
+           
+    //     }
+    // })
 }

@@ -28,6 +28,11 @@
                 <button type="primary">哈夫曼编码游戏</button>
             </navigator>
         </view>
+        <view class="box2">
+        <navigator url="../rank/rank">
+                <button type="primary">排行榜</button>
+            </navigator>
+        </view>
     </view>
     <view class="index2">
         <view class="box3">

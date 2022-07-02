@@ -1,0 +1,48 @@
+/* pages/rank/rank.wxss */
+text{
+    color:red;
+    font-size: 30rpx;
+    text-align: center;
+}
+.bubblesort_rank{
+    width: 500rpx;
+    height: 1000rpx;
+    background-color: rgb(252, 187, 187);
+    margin-bottom: 20rpx;
+    margin-left: 120rpx;
+}
+.search_rank{
+    width: 500rpx;
+    height: 100rpx;
+    background-color: firebrick;
+}
+.table {
+    border: 0px solid darkgray;
+   }
+   .tr {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    height: 3rem;
+    align-items: center;
+   }
+   .td {
+    width:40%;
+    justify-content: center;
+    text-align: center;
+   }
+   .bg-w{
+    background: snow;
+   }
+   .bg-g{
+    background: #E6F3F9;
+   }
+   .th {
+    width: 40%;
+    justify-content: center;
+    background: #3366FF;
+    color: #fff;
+    display: flex;
+    height: 3rem;
+    align-items: center;
+   }

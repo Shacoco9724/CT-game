@@ -1,4 +1,5 @@
 // test/test.js
+const util = require('../../utils/util.js')
 Page({
 
       /**
@@ -11,7 +12,9 @@ Page({
         y:0,
         maopaotimes:0,
         changetimes:0,
+        changetimesok:0,
         textarea:'',
+        score:0,
     // 进入页面开始显示的数字：以随机数显示
         data:[{index:Math.round(Math.random()*100)},
           { index: Math.round(Math.random()*100) },
@@ -54,15 +57,35 @@ Page({
             }).exec()
 
         this.data.maopaotimes+=1;
+        // wx.getUserProfile({
+        //     desc: '获取用户信息用于维护会员权益',
+        //     lang:'zh_CN',
+        //     success:(res)=>{
+        // let db = wx.cloud.database()
+        // // var userInfo = res.userInfo;
+        // db.collection("bubble_users").add({
+        //   data:{
+        //     // userInfo:res.userInfo
+        //     // _id:res._id,
+        //     maopaotimes:this.data.maopaotimes,
+        //     changetimes:this.data.changetimes,
+        //     changetimesok:this.data.changetimesok,
+        //     score:this.data.score,
+        //     time:util.formatTime(new Date())
+        //   }
+        // })
+//     }
+// })
+
       },
     
-      /**
+    /**
        * 生命周期函数--监听页面初次渲染完成
        */
       onReady: function () {
-      
+        
       },
-    
+     
       /**
        * 生命周期函数--监听页面显示
        */
@@ -80,8 +103,20 @@ Page({
       /**
        * 生命周期函数--监听页面卸载
        */
+    // 在进入冒泡排序页面后进行的操作都会执行
+    // 在退出冒泡排序页面后的数据就是在这个监听页面卸载执行
       onUnload: function () {
-      
+        let db = wx.cloud.database()
+        db.collection("bubble_users").add({
+            // 在数据库存储的数据还包括用户每次登陆的id和唯一的用户openid，可以用来识别是哪一个用户
+          data:{
+            maopaotimes:this.data.maopaotimes,
+            changetimes:this.data.changetimes,
+            changetimesok:this.data.changetimesok,
+            score:this.data.score,
+            time:util.formatTime(new Date())
+          }
+        })
       },
     
       /**
@@ -89,12 +124,11 @@ Page({
        */
       onPullDownRefresh: function () {
       
-      },
-    
+    },
       /**
        * 页面上拉触底事件的处理函数
        */
-      onReachBottom: function () {
+      onReachBottom:function () {
       
       },
     
@@ -104,7 +138,6 @@ Page({
       onShareAppMessage: function () {
       
       },
-    
     
       //长按
       _longtap:function(e){
@@ -117,7 +150,6 @@ Page({
           hidden: false,
           flag:true
         })
-    
       },
       //触摸开始
       touchs:function(e){
@@ -136,18 +168,16 @@ Page({
         let data = this.data.data
         for(var j = 0; j<list.length; j++){
           const item = list[j];
-    
           if(x>item.left && x<item.right && y>item.top && y<item.bottom){
             const endIndex = item.dataset.index;
             const beginIndex = this.data.beginIndex;
             // 加了这个条件 是保证不能让不相邻的元素进行交换
-            if(Math.abs(beginIndex-endIndex)<=1){
+            if(Math.abs(beginIndex-endIndex)==1){
             //向后移动
             if (beginIndex < endIndex) {
               let tem = data[beginIndex];
               for (let i = beginIndex; i < endIndex; i++) {
                 data[i] = data[i + 1]
-    
               }
               data[endIndex] = tem;
             }
@@ -161,19 +191,17 @@ Page({
             }
             this.setData({
                 data: data,
-                textarea:'做的好，继续加油！'
+                textarea:'做的好，继续加油！',
+                score:this.data.score+=10
             })
+            // 每成功交换一次就把交换成功次数加1
+            this.data.changetimesok+=1;
             }
             else{
-                // wx.showToast({
-                //   title: '不能交换不相邻的元素哦',
-                //   icon:"none",
-                //   duration:2000
-                // })
                 this.setData({
-                    textarea:'不能交换哦'
+                    textarea:'不能交换哦',
+                    score:this.data.score-5
                 })
-                // this.data.textarea = '不能交换不相邻的元素哈哈哈哈哈'
             }
             }
         }
@@ -181,12 +209,20 @@ Page({
             hidden: true,
             flag: false
         })
+        // 每移动卡牌数字一次就把次数加1
         this.data.changetimes+=1;
+        // 把排序页面中的进入页面次数、成功交换卡牌数字次数、总共移动交换卡牌次数和获取的分数存入数据池
+        
         var developer = {
             mpt:this.data.maopaotimes,
-            ct:this.data.changetimes
+            ctok:this.data.changetimesok,
+            ct:this.data.changetimes,
+            score:this.data.score,
         }
+        
+        // 存入数据池函数
         wx.setStorageSync('developer',developer);
+
     },
       //滑动
       touchm:function(e){
@@ -199,8 +235,6 @@ Page({
           })
         }
       },
-    // 改变提示区域的文本
-    // changeText:function(){
-    //     this.data.textarea = '不能交换不相邻的元素哈哈哈哈哈'
-    // } 
+
     })
+    
