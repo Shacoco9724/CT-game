@@ -80,5 +80,10 @@ Page({
               success: (res) => {},
             })
         })
-    }
+    },
+    delType:function(e){
+
+        
+       
+       }
 })

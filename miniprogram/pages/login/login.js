@@ -1,15 +1,13 @@
 // pages/login/login.js
 const util = require('../../utils/util.js')
+const app = getApp();
 Page({
     /**
      * 页面的初始数据
      */
     data: {
-        userInfo:{//用于保存用户数据
-            nickName: '点击登录',
-            mpt:0,
-            ct:0
-          }, 
+        userInfo:{nickName:'点击登录'},
+        hasUserInfo:false,
         islogin: false, //声明一个变量,默认为false,一旦登录成功,改为true
     },
     /**
@@ -70,57 +68,41 @@ Page({
       desc: '获取用户信息用于维护会员权益',
       lang:'zh_CN',
       success:(res)=>{
-        // 在控制台显示
-        console.log('获取用户信息',res)
-
-        // 获取当前登陆时间
+    //     // 在控制台显示
+    //     // console.log('获取用户信息',res)
+    //     // 获取当前登陆时间
         let time = util.formatTime(new Date());
-
-        // 数据池，获取进入其他页面上次的数据（存储在数据池中）
-        var developer = (wx.getStorageSync('developer') || [])
-      
-        //将用户数据存入data,更新UI
+    //     //将用户数据存入data,更新UI
         this.setData({
           islogin: true,//登录成功,改为true
-            // 登陆成功后,在数据库中显示的users集合中的信息是userInfo
-            // 这里可以更改userInfo的值
-            userInfo: res.userInfo
-      
-        //     userInfo:{
-        //     _id: res.userInfo._id,
-        //      nickName: res.userInfo.nickName,
-        //      mpt:developer.mpt,
-        //      ct:developer.ct,
-        //      sex:'女',
-        //      time:time,
-        //      score:developer.score
-        // }
+    //         // 登陆成功后,在数据库中显示的users集合中的信息是userInfo
+    //         // 这里可以更改userInfo的值
+            userInfo: res.userInfo,
+            hasUserInfo:true
         })
-       
+        // 把当前登录用户的信息保存到全局变量中
+        app.globalData.userInfo = res.userInfo
+        app.globalData.hasUserInfo = true
+        console.log(app.globalData.userInfo)
         //去自己家数据库进行查询,看一下当前用户的最新数据
         this.login()
-        // 在登陆后更新云数据库
+        // 在登陆后更新云数据库,每次登陆就增加一条记录
         let db = wx.cloud.database()
-        var userInfo = res.userInfo;
+        // var userInfo = res.userInfo;
         db.collection("users").add({
           data:{
             // userInfo:res.userInfo
             userInfo:{
                _id: res.userInfo._id,
                nickName: res.userInfo.nickName,
-               mpt:developer.mpt,
-               ct:developer.ct,
-               ctok:developer.ctok,
-               sex:'男login',
-                time:time,
-                score:developer.socre
+                time:time
             }
           }
         })
-      }
-    })
+    }
+  })
   },
-
+ 
 //   跳转到游戏选择页面
   skip(){
     //   检查是否是登陆状态
@@ -137,7 +119,6 @@ Page({
          })
      }
   },
-  
   //访问自己家数据库执行登录业务
   //1.若在users集合中找到用户信息,那么直接更新UI
   //2.若在users集合中没有找到用户信息,执行注册业务
@@ -145,12 +126,13 @@ Page({
     let db = wx.cloud.database()   //获取数据库信息
     //users集合有权限设置,导致只能查到自己以前添加过得数据
     db.collection('users').get().then(res=>{
-       console.log('查询当前用户',res)
+      //  console.log('查询当前用户',res)
       if(res.data.length==0){//没有查到用户
         this.regist() //调一个方法,去注册
       }else{//查到了用户
-        let userInfo = res.data[0] //拿到数据库里面的数据
-        this.setData({userInfo})   //直接更新到data,这样页面就更新了
+        // let userInfo = res.data[0] //拿到数据库里面的数据
+          this.data.userInfo = res.userInfo
+          this.data.hasUserInfo = true  //直接更新到data,这样页面就更新了
         }
       })
     //   登陆成功后才可以执行跳转页面，跳到游戏选择页面

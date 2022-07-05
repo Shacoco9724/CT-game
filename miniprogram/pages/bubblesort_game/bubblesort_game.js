@@ -1,5 +1,13 @@
 // test/test.js
 const util = require('../../utils/util.js')
+const app = getApp();
+//连接云数据库
+const db = wx.cloud.database();
+//获取云数据库中数据集合的引用
+const bubblesort_score = db.collection('bubblesort_score');
+//数据库操作符
+const _ = db.command;
+let submit = 0;
 Page({
 
       /**
@@ -15,6 +23,8 @@ Page({
         changetimesok:0,
         textarea:'',
         score:0,
+        userInfo:{nickName:'',
+        avataUrl:'',},
     // 进入页面开始显示的数字：以随机数显示
         data:[{index:Math.round(Math.random()*100)},
           { index: Math.round(Math.random()*100) },
@@ -42,8 +52,9 @@ Page({
       /**
        * 生命周期函数--监听页面加载
        */
+    // 在进入冒泡排序页面后进行的操作都会执行
       onLoad: function (options) {
-        
+
           var query = wx.createSelectorQuery();
           var nodesRef = query.selectAll(".item");
           nodesRef.fields({
@@ -55,28 +66,8 @@ Page({
               elements: result
             })
             }).exec()
-
+        // 进入冒泡排序页面就加1
         this.data.maopaotimes+=1;
-        // wx.getUserProfile({
-        //     desc: '获取用户信息用于维护会员权益',
-        //     lang:'zh_CN',
-        //     success:(res)=>{
-        // let db = wx.cloud.database()
-        // // var userInfo = res.userInfo;
-        // db.collection("bubble_users").add({
-        //   data:{
-        //     // userInfo:res.userInfo
-        //     // _id:res._id,
-        //     maopaotimes:this.data.maopaotimes,
-        //     changetimes:this.data.changetimes,
-        //     changetimesok:this.data.changetimesok,
-        //     score:this.data.score,
-        //     time:util.formatTime(new Date())
-        //   }
-        // })
-//     }
-// })
-
       },
     
     /**
@@ -103,20 +94,29 @@ Page({
       /**
        * 生命周期函数--监听页面卸载
        */
-    // 在进入冒泡排序页面后进行的操作都会执行
     // 在退出冒泡排序页面后的数据就是在这个监听页面卸载执行
       onUnload: function () {
-        let db = wx.cloud.database()
-        db.collection("bubble_users").add({
-            // 在数据库存储的数据还包括用户每次登陆的id和唯一的用户openid，可以用来识别是哪一个用户
-          data:{
-            maopaotimes:this.data.maopaotimes,
-            changetimes:this.data.changetimes,
-            changetimesok:this.data.changetimesok,
-            score:this.data.score,
-            time:util.formatTime(new Date())
-          }
-        })
+        if(submit==0 && this.data.changetimes!=0)
+        {
+           // 如果用户没有点击提交排序结果按钮直接返回到首页，这里返回后可以把数据存储到数据库
+            let sortResult = {
+                // 从全局变量中获取用户信息
+                nickName:app.globalData.hasUserInfo?app.globalData.userInfo.nickName:'',
+                // avatarUrl:app.globalData.hasUserInfo?app.globalData.userInfo.avatarUrl:''
+                score:this.data.score,
+                changeTimes:this.data.changetimes,
+                changeTimesok:this.data.changetimesok
+            };
+            bubblesort_score.add({
+                data:{
+                    ...sortResult,
+                    // 创建当前时间
+                    // createDate:db.serverDate()
+                    time:util.formatTime(new Date())
+                }
+            })   
+        }
+    
       },
     
       /**
@@ -208,20 +208,19 @@ Page({
         this.setData({
             hidden: true,
             flag: false
+
         })
         // 每移动卡牌数字一次就把次数加1
         this.data.changetimes+=1;
         // 把排序页面中的进入页面次数、成功交换卡牌数字次数、总共移动交换卡牌次数和获取的分数存入数据池
-        
-        var developer = {
-            mpt:this.data.maopaotimes,
-            ctok:this.data.changetimesok,
-            ct:this.data.changetimes,
-            score:this.data.score,
-        }
-        
+        // var developer = {
+        //     mpt:this.data.maopaotimes,
+        //     ctok:this.data.changetimesok,
+        //     ct:this.data.changetimes,
+        //     score:this.data.score,
+        // }
         // 存入数据池函数
-        wx.setStorageSync('developer',developer);
+        // wx.setStorageSync('developer',developer);
 
     },
       //滑动
@@ -235,6 +234,41 @@ Page({
           })
         }
       },
-
+    submit(){
+        // let submit = 0 
+        let sortResult = {
+            // 从全局变量中获取用户信息
+            nickName:app.globalData.hasUserInfo?app.globalData.userInfo.nickName:'',
+            // avatarUrl:app.globalData.hasUserInfo?app.globalData.userInfo.avatarUrl:''
+            score:this.data.score,
+            changeTimes:this.data.changetimes,
+            changeTimesok:this.data.changetimesok
+        };
+        wx.showModal({
+         title: '提示',
+         content: '确认要提交此次排序结果?',
+         success: function (res) {
+            // 用户点击确定
+          if (res.confirm) {
+            bubblesort_score.add({
+                data:{
+                    ...sortResult,
+                    // 创建当前时间
+                    // createDate:db.serverDate()
+                    time:util.formatTime(new Date())
+                }
+            })
+            wx.showToast({
+            title: '提交成功',
+            })
+            submit = 1
+            }
+            else if (res.cancel) {
+                console.log('用户点击取消')
+            }
+        }
     })
+    }
+})
+
     

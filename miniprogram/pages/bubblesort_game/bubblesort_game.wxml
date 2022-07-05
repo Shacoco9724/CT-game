@@ -25,4 +25,5 @@
     </view>
     <view>你的分数{{score}}</view>
   </view>
+  <button bindtap="submit" data-id="{{item.typeId}}">提交排序结果</button>
 </view>

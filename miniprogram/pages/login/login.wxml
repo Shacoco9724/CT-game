@@ -1,6 +1,7 @@
 <!--pages/login/login.wxml-->
 <view class="cover">
-<image src="../../images/bg1.jpeg"></image>
+<!-- <view wx:if="{{!hasUserInfo}}" bindtap="login"> -->
+  <image src="../../images/bg1.jpeg"></image>
   <van-image
   round
   fit="cover"
@@ -10,6 +11,9 @@
   <view bindtap="handleTapLogin">
   {{userInfo.nickName}}
   </view>
+  <!-- <button>获取头像昵称</button> -->
+<!-- </view> -->
+
   <button bindtap="skip">跳到首页</button>
 </view>
 

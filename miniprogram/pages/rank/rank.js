@@ -1,89 +1,46 @@
-// pages/rank/rank.js
+//获取应用实例
+const app = getApp()
+
+// 连接云数据库
+const db = wx.cloud.database();
+// 获取集合的引用
+const bubblesort_score = db.collection('bubblesort_score');
+// 数据库操作符
+const _ = db.command;
+
 Page({
+  data: {
+    rankList: []
+  },
+  
+  onLoad() {
+    this.getRankList();
+  },
 
-    /**
-     * 页面的初始数据
-     */
-    data: {
-        listdata:[
-            {"openid":"0",
-            "score":0}
-        ]
-        
-    },
+  getRankList() {
+    // 显示 loading 提示框
+    wx.showLoading({
+      title: '拼命加载中'
+    });
+    // 数据库集合的聚合操作实例
+    bubblesort_score.where({       //类似于where，对记录进行筛选
+      _openid: _.exists(true)
+    })
+    .orderBy('score', 'desc')
+    .get()
+    .then(res => {
+      // 获取集合数据，或获取根据查询条件筛选后的集合数据。
+      console.log('[云数据库] [排行榜] 查询成功')
+      console.log(res.data)
+      let data = res.data || [];
+      
+      // 将数据从逻辑层发送到视图层，通俗的说，也就是更新数据到页面展示
+      this.setData({
+        rankList:data,
+      });
 
-    /**
-     * 生命周期函数--监听页面加载
-     */
-    onLoad: function (options) {
-        // 数据池，获取进入其他页面上次的数据（存储在数据池中）
-        var developer = (wx.getStorageSync('developer') || [])
-        wx.cloud.callFunction({
-            name:'bubblesort',
-            data:{
-                message:'bubblesort'
-            }
-        }).then(res=>{
-            // for(i=0;i<res.data.length;i++)
-            // {
-            //     this.data.listdata[i].openid = res.data[i].openid
-            //     this.data.listdata[i].score = res.data[i].score
-            // }
-            console.log(res)
-            this.setData({
-                listdata:[{"openid":'res.openid',"score":developer.score}] 
-            })
-        })
-        
-        },
-        
-
-    /**
-     * 生命周期函数--监听页面初次渲染完成
-     */
-    onReady: function () {
-
-    },
-
-    /**
-     * 生命周期函数--监听页面显示
-     */
-    onShow: function () {
-
-    },
-
-    /**
-     * 生命周期函数--监听页面隐藏
-     */
-    onHide: function () {
-
-    },
-
-    /**
-     * 生命周期函数--监听页面卸载
-     */
-    onUnload: function () {
-
-    },
-
-    /**
-     * 页面相关事件处理函数--监听用户下拉动作
-     */
-    onPullDownRefresh: function () {
-
-    },
-
-    /**
-     * 页面上拉触底事件的处理函数
-     */
-    onReachBottom: function () {
-
-    },
-
-    /**
-     * 用户点击右上角分享
-     */
-    onShareAppMessage: function () {
-
-    }
+      // 隐藏 loading 提示框
+      wx.hideLoading();
+    })
+  },
 })

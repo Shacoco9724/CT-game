@@ -14,4 +14,5 @@
     <button type="primary" form-type="submit">提交</button>
     <button type="default" form-type="reset">重置</button>
 </form>
+<text bindtap='delType' data-id="{{item.typeId}}">删除</text>
 </view>
