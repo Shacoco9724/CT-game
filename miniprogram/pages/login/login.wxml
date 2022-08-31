@@ -1,20 +1,24 @@
 <!--pages/login/login.wxml-->
 <view class="cover">
 <!-- <view wx:if="{{!hasUserInfo}}" bindtap="login"> -->
-  <image src="../../images/bg1.jpeg"></image>
+  <!-- <image src="../../images/bg4.jpeg" class="bg"></image> -->
+  <image class="bg" mode="scaleToFill" src="../../images/bg.jpg"></image>
   <van-image
   round
   fit="cover"
   width="180rpx"
   height="180rpx"
-  src="{{userInfo.avatarUrl}}"/>
-  <view bindtap="handleTapLogin">
+  src="{{userInfo.avatarUrl}}" class="touxiang"/>
+  <view class="info">
+  <view class="info1">
+    <view bindtap="handleTapLogin" class="nickname">
   {{userInfo.nickName}}
   </view>
-  <!-- <button>获取头像昵称</button> -->
-<!-- </view> -->
+  <button bindtap="skip" class="btn cu-btn bg-red round block lg margin-top">首页</button>
+  </view>
+    
+</view>
 
-  <button bindtap="skip">跳到首页</button>
 </view>
 
 

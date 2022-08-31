@@ -2,6 +2,19 @@
 .index{
   width: 100%;
   height: 1300rpx;
+  background-color: rgb(236, 217, 207);
+  /* position: absolute; */
+  top: 0;
+  left: 0;
+  width: 750rpx;
+  height: 100vh;
+}
+.bg{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 750rpx;
+  height: 100vh;
 }
 .index1{
   margin-top: 80rpx;
@@ -14,6 +27,10 @@
   width: 100%;
   height: 140rpx;
   margin-bottom: 10rpx;
+  
+}
+.btn{
+  background-color: gold;
 }
 .index2{
   margin-top: 680rpx;

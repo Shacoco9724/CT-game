@@ -41,7 +41,7 @@
     },
     "appid": "wxa4eceaf2ccad0dd2",
     "projectname": "CT_game",
-    "libVersion": "2.14.1",
+    "libVersion": "2.25.4",
     "cloudfunctionTemplateRoot": "cloudfunctionTemplate",
     "condition": {
         "search": {

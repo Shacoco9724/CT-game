@@ -1,0 +1,18 @@
+/**index.wxss**/
+input{
+    border: 2rpx solid green;
+    margin: 30rpx 0;
+    height: 90rpx;
+    /* 圆角边框 */
+    border-radius: 20rpx; 
+  }
+  #tip{
+    /* 固定高度 */
+    height: 800rpx;
+  }
+  .demo-box{
+    height: 400rpx;
+  }
+  navigator{
+    text-align: center;
+  }

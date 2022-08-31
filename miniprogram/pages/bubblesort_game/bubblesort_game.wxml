@@ -1,10 +1,19 @@
-<view class='outer' style="background:url('../../images/bg1.jpeg');">
-  
+<view class='outer'>
+  <!-- style="background:url('../../images/bg1.jpeg');" -->
+  <!-- style="background-image: url(../../images/bg2.jpeg);" -->
+ 
   <view class='inner'>
-    <view class="title-text">亲爱的同学，来试试下面的数字排序吧！</view>
-    <movable-area>
+    <image class="bg" mode="scaleToFill" src="../../images/bg.jpg"></image>
+    <image src="../../images/bubblesortgame1.png" class="bubble"></image>
+    <image src="{{checked?'../../images/music.png':'../../images/music.png'}}" class="music {{!checked && 'circle'}}" catchtap="checkMusic"></image>
+    
+    <view class="title-text">亲爱的同学，来试试</view> 
+    <view class="title-text">数字排序吧！</view>
+    <movable-area> 
       <block wx:for="{{data}}">
-        <view class='item'  style="background:url('../../images/item1.jpeg');" id="{{item.index}}" data-index='{{index}}' bindlongpress='_longtap' bindtouchstart='touchs' bindtouchend='touchend' bindtouchmove='touchm'>
+        <!-- style="background:url('../../images/item1.jpeg');" -->
+        <view class='item' style="background:url('../../images/item1.jpeg');"  id="{{item.index}}" data-index='{{index}}' bindlongpress='_longtap' bindtouchstart='touchs' bindtouchend='touchend' bindtouchmove='touchm'>
+        
           <text>{{item.index}}</text>
         </view>
       </block>
@@ -14,16 +23,19 @@
       </movable-view>
     </movable-area>
     
-    <view class="hinder-area">
+    <!-- <view class="hinder-area">
       <view class="hinder-area" bindtap="touchend" >点击这里，上面的卡牌可以随机分配数字 </view>
       <button  bindtap="changeNumber">点击我，随机数</button>
-    </view> 
+    </view>  -->
     <view class="changeText">提示区域：
       只能交换相邻的两张卡牌哦，
       从前面开始按从小到大的顺序进行排列
       {{textarea}}
     </view>
-    <view>你的分数{{score}}</view>
+    <view class="score">你的分数{{score}}</view>
   </view>
   <button bindtap="submit" data-id="{{item.typeId}}">提交排序结果</button>
+  <view class="change_sort">交换顺序
+  <view>{{begin}}-{{end}}</view>
+  </view>
 </view>

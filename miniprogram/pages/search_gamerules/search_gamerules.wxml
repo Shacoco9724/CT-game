@@ -8,9 +8,27 @@
  5.猜对或猜对玩家可重新开始
 </text>
 </view> -->
-<view id="container">
-    <view wx:for="{{newArr}}" class='cards'>
-        <view class="card card_a" style='display:{{item.showA}}' bindtap='change' data-id='{{item.id}}'>A</view>
-        <view class="card card_b" style='display:{{item.showB}}' bindtap='change' data-id='{{item.id}}'>B</view>
+<view>
+    <image class="bg" src="../../images/bg.jpg"></image>
+    <image src="../../images/guess1.png" class="guess"></image>
+    <view id="container">
+    <view>生成一个随机数：{{rand}}</view>
+    <view wx:for="{{newArr}}" class='cards' style="font-family: sans-serif;">
+    <!-- background: url("../../images/normal.png"); -->
+        <view class="card card_a" style='display:{{item.showA}};' bindtap='change' data-id='{{item.id}}'>A</view>
+<!-- background: url("../../images/correct.png"); -->
+    <view wx:if="{{isWin==0}}" class="card card_b" style='display:{{item.showB}}; background-color:{{item.card_b}}' bindtap='change' data-id='{{item.id}}'>{{item.number}}</view>
+    <view wx:else="{{isWin==1}}" class="card card_b" style='display:{{item.showB}}; background-color:{{item.card_b}}' bindtap='change' data-id='{{item.id}}'>{{item.number}}</view>
     </view>
+</view>
+<view class="bottom-button">
+        <view bindtap="onButtonTap" class="btn-ok-view" id="btnBack" style="margin-left: 20rpx;">
+            <image class="btn-ok" mode="scaleToFill" src="../../images/btn.png"></image>
+            <text class="btn-ok-txt">回到首页</text>
+        </view>
+        <view bindtap="onButtonTap" class="btn-ok-view" id="btnOk" style="margin-left: 20rpx;">
+            <image class="btn-ok" mode="scaleToFill" src="../../images/btn.png"></image>
+            <text class="btn-ok-txt">再来一次</text>
+        </view>
+    </view>
 </view>

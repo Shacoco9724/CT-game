@@ -1,13 +1,34 @@
-<!-- index.wxml -->
+<!-- /* pages/index01/index01.wxml */
 <view class="demo-box">
-    <form>
-        <block wx:if="{{isGameStart}}">
-            <input type="number" placeholder="请输入1-100之间数字" bindinput="getNumber"></input>
-            <button type='primary' form-type="reset" bindtap='guess' class="btn">提交</button>
-        </block>
-        <block wx:else>
-            <button type="primary" bindtap='restartGame'>重新开始</button>
-        </block>
-    </form>
-    <text id="tip">{{tip}}</text>
+<text>
+ 1.系统随机生成1-100的数字让玩家猜
+ 2.玩家共有5次机会
+ 3.在5次之内玩家猜成功
+ 4.点击开始游戏进入界面
+ 5.猜对或猜对玩家可重新开始
+</text>
+</view> -->
+<view>
+    <image class="bg" src="../../images/bg.jpg"></image>
+    <image src="../../images/guess1.png" class="guess"></image>
+    <view id="container">
+    <view>生成一个随机数：{{rand}}</view>
+    <view wx:for="{{newArr}}" class='cards' style="font-family: sans-serif;">
+    <!-- background: url("../../images/normal.png"); -->
+        <view class="card card_a" style='display:{{item.showA}};' bindtap='change' data-id='{{item.id}}'>A</view>
+<!-- background: url("../../images/correct.png"); -->
+    <view wx:if="{{isWin==0}}" class="card card_b" style='display:{{item.showB}}; background-color:{{item.card_b}}' bindtap='change' data-id='{{item.id}}'>{{item.number}}</view>
+    <view wx:else="{{isWin==1}}" class="card card_b" style='display:{{item.showB}}; background-color:{{item.card_b}}' bindtap='change' data-id='{{item.id}}'>{{item.number}}</view>
+    </view>
+</view>
+<view class="bottom-button">
+        <view bindtap="onButtonTap" class="btn-ok-view" id="btnBack">
+            <image class="btn-ok" mode="scaleToFill" src="../../images/btn.png"></image>
+            <text class="btn-ok-txt">回到首页</text>
+        </view>
+        <view bindtap="onButtonTap" class="btn-ok-view" id="btnOk" style="margin-left: 20rpx;">
+            <image class="btn-ok" mode="scaleToFill" src="../../images/btn.png"></image>
+            <text class="btn-ok-txt">再来一次</text>
+        </view>
+    </view>
 </view>

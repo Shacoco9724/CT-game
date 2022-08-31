@@ -1,0 +1,24 @@
+/* pages/queue_game/queue_game.wxss */
+.bg{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 750rpx;
+    height: 100vh;
+    background-color: rgb(168, 242, 255);
+  }
+  .queue{
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    top:-10px;
+    left: 40px;
+    
+  }
+  #container{
+    margin-top: 200px;
+    width: 100%;
+    /* height: 350rpx; */
+    height: 100px;
+    position: relative;
+  }

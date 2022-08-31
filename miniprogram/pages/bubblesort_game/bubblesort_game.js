@@ -7,6 +7,7 @@ const db = wx.cloud.database();
 const bubblesort_score = db.collection('bubblesort_score');
 //数据库操作符
 const _ = db.command;
+// 提交状态值
 let submit = 0;
 Page({
 
@@ -14,6 +15,11 @@ Page({
        * 页面的初始数据
        */
       data: {
+
+        checked: false,
+        begin:0,
+        end:0,
+
         hidden:true,
         flag:false,
         x:0,
@@ -26,14 +32,21 @@ Page({
         userInfo:{nickName:'',
         avataUrl:'',},
     // 进入页面开始显示的数字：以随机数显示
-        data:[{index:Math.round(Math.random()*100)},
-          { index: Math.round(Math.random()*100) },
-          { index: Math.round(Math.random()*100) },
-          { index: Math.round(Math.random()*100) },
-          { index: Math.round(Math.random()*100) },
-          { index: Math.round(Math.random()*100) },
-          { index: Math.round(Math.random()*100) },
-        ],
+    //     data:[{index:Math.round(Math.random()*100)},
+    //       { index: Math.round(Math.random()*100) },
+    //       { index: Math.round(Math.random()*100) },
+    //       { index: Math.round(Math.random()*100) },
+    //       { index: Math.round(Math.random()*100) },
+    //       { index: Math.round(Math.random()*100) },
+    //       { index: Math.round(Math.random()*100) },
+    //     ],
+    data:[{index:6},
+        {index:8},
+        {index:5},
+        {index:1},
+        {index:7},
+        {index:4},
+        {index:2}],
         disabled: true,
         elements:[]
       },
@@ -81,14 +94,15 @@ Page({
        * 生命周期函数--监听页面显示
        */
       onShow: function () {
-      
+       this.player(wx.getBackgroundAudioManager())
       },
     
       /**
        * 生命周期函数--监听页面隐藏
        */
       onHide: function () {
-      
+        // 小程序隐藏时候暂停播放（不加页面将一直播放）
+           wx.getBackgroundAudioManager().stop();
       },
     
       /**
@@ -98,7 +112,7 @@ Page({
       onUnload: function () {
         if(submit==0 && this.data.changetimes!=0)
         {
-           // 如果用户没有点击提交排序结果按钮直接返回到首页，这里返回后可以把数据存储到数据库
+           // 如果用户没有点击提交排序结果按钮 并且 移动次数不为0，直接返回到首页时，这里返回后可以把数据存储到数据库
             let sortResult = {
                 // 从全局变量中获取用户信息
                 nickName:app.globalData.hasUserInfo?app.globalData.userInfo.nickName:'',
@@ -116,7 +130,9 @@ Page({
                 }
             })   
         }
-    
+
+     // 页面卸载时候暂停播放（不加页面将一直播放）
+        wx.getBackgroundAudioManager().stop();
       },
     
       /**
@@ -197,12 +213,20 @@ Page({
             // 每成功交换一次就把交换成功次数加1
             this.data.changetimesok+=1;
             }
+            else if(Math.abs(beginIndex-endIndex)==0)
+            {
+                this.setData({
+                    textarea: '和相邻的元素进行交换哦'
+                })
+            }
             else{
                 this.setData({
                     textarea:'不能交换哦',
-                    score:this.data.score-5
+                    score:this.data.score-5,
                 })
             }
+            this.data.begin = data[beginIndex];
+            this.data.end = data[endIndex]
             }
         }
         this.setData({
@@ -268,7 +292,33 @@ Page({
             }
         }
     })
-    }
+    },
+
+    // checkMusic() {
+    //     console.log(11)
+    //     this.setData({
+    //       checked: !this.data.checked
+    //     })
+    //     if (this.data.checked) {
+    //       wx.getBackgroundAudioManager().pause();
+    //     } else {
+    //         // this.player();
+    //       this.player(wx.getBackgroundAudioManager())
+    //     }
+    //   },
+    //   player(e) {
+    //     e.title = '游戏音乐'
+    //     // e.src = "http://music.163.com/song/media/outer/url?id=36587407.mp3"
+    //     e.src = " https://music.163.com/song/media/outer/url?id=529916247.mp3"
+    //     //音乐播放结束后继续播放此音乐，循环不停的播放
+    //     e.onEnded(() => {
+    //       this.player(wx.getBackgroundAudioManager())
+    //     })
+    //   }
+     
+     
+     
+
 })
 
     

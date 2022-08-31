@@ -6,9 +6,10 @@ page{
 .outer{
     width: 100%;
     height: 100%; 
-    border: 1px solid rgb(255, 0, 0);
+    /* border: 1px solid rgb(255, 0, 0); */
      margin: 0 auto;
-     /* background-color: goldenrod; */
+     /* background-image: url(../../images//bg2.jpeg); */
+     background-color:white;
 }
 .inner{
     width: 100%;
@@ -16,14 +17,31 @@ page{
     color: rgb(255, 0, 64);
     
 }
+.bg{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 750rpx;
+    height: 100vh;
+  }
+  .bubble{
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    top:-10px;
+    left: 10px;
+  }
 .title-text{
-    text-align: center;
-    color: rgb(30, 255, 0);
-    margin-top: 100rpx;
+    position: relative;
+    text-align: right;
+    color: rgb(219, 14, 14);
+    top: 200rpx;
 }
 movable-area{
     width: 100%;
     height: 23%;
+    top: 70px;
+    position: relative;
 }
 .item{
     display: inline-block;
@@ -35,6 +53,9 @@ movable-area{
     text-align: center;
     font-size: 42rpx;
     line-height: 160rpx;
+    background:linear-gradient(90deg, #ffa96f 0%, #ffc5b4 52%, #ffe4ce 100%);
+    /* background:url('../../images/item1.jpeg'); */
+    /* background-image: url(../../images/item1.jpeg); */
 }
 .index-first{
     display: inline-block;
@@ -49,11 +70,41 @@ movable-area{
     border: 1px solid blue;
     /* background-color: yellow; */
 }
-.hinder-area{
+/* .hinder-area{
+    position: relative;
     text-align: center;
     margin-top: 200rpx;
-    color:rgb(255, 255, 0);
-}
+    color:red;
+} */
 .changeText{
+    position: relative;
     color: green;
+    margin-top: 300px;
 }
+.score{
+    position: relative;
+}
+  .music {
+    width: 86rpx;
+    height: 86rpx;
+    position: absolute;
+    top: 108rpx;
+    right: 10rpx;
+    z-index: 99;
+    /* background-color: firebrick; */
+  }
+  .circle {
+    animation: cirlce 4s linear infinite;
+  }
+  @keyframes cirlce {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(359deg);
+    }
+  }
+  .change_sort{
+      position: relative;
+  }
+  

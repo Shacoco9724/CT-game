@@ -1,0 +1,8 @@
+<!--pages/stack-queue_game/stack-queue_game.wxml-->
+<view>
+    <image class="bg"></image>
+    <image src="../../images/stack.png" class="stack"></image>
+    <view class="container">
+        
+    </view>
+</view>

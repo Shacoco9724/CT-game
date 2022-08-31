@@ -1,0 +1,13 @@
+<!-- index.wxml -->
+<view class="demo-box">
+    <form>
+        <block wx:if="{{isGameStart}}">
+            <input type="number" placeholder="请输入1-100之间数字" bindinput="getNumber"></input>
+            <button type='primary' form-type="reset" bindtap='guess' class="btn">提交</button>
+        </block>
+        <block wx:else>
+            <button type="primary" bindtap='restartGame'>重新开始</button>
+        </block>
+    </form>
+    <text id="tip">{{tip}}</text>
+</view>
