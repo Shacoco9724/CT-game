@@ -9,26 +9,56 @@
 </text>
 </view> -->
 <view>
-    <image class="bg" src="../../images/bg.jpg"></image>
-    <image src="../../images/guess1.png" class="guess"></image>
+    <image class="bg" src="../../images/bg5.jpeg"></image>
+    <image src="../../images/guess2.png" class="guess"></image>
     <view id="container">
-    <view>生成一个随机数：{{rand}}</view>
-    <view wx:for="{{newArr}}" class='cards' style="font-family: sans-serif;">
-    <!-- background: url("../../images/normal.png"); -->
-        <view class="card card_a" style='display:{{item.showA}};' bindtap='change' data-id='{{item.id}}'>A</view>
-<!-- background: url("../../images/correct.png"); -->
-    <view wx:if="{{isWin==0}}" class="card card_b" style='display:{{item.showB}}; background-color:{{item.card_b}}' bindtap='change' data-id='{{item.id}}'>{{item.number}}</view>
-    <view wx:else="{{isWin==1}}" class="card card_b" style='display:{{item.showB}}; background-color:{{item.card_b}}' bindtap='change' data-id='{{item.id}}'>{{item.number}}</view>
-    </view>
-</view>
-<view class="bottom-button">
-        <view bindtap="onButtonTap" class="btn-ok-view" id="btnBack">
-            <image class="btn-ok" mode="scaleToFill" src="../../images/btn.png"></image>
-            <text class="btn-ok-txt">回到首页</text>
+        
+        <view class="rand">请输入{{rand}}的倍数(1-18以内)</view>
+        
+        <view class="inputview">
+            <!-- <view class="number">{{number1}}</view>
+            <view class="number">{{number2}}</view>
+            <view class="number">{{number3}}</view>
+            <view class="number">{{number4}}</view> -->
+            <view class="inputitem">
+                <input class="input" type="number" bindinput="getInputnumber1" value="{{number1}}" placeholder="请输入" placeholder-style="color:red;" />
+            </view>
+            <view class="inputitem">
+                <input class="input" type="number" bindinput="getInputnumber2" value="{{number2}}" placeholder="请输入" placeholder-style="color:red" />
+            </view>
+            <view class="inputitem">
+                <input class="input" type="number" bindinput="getInputnumber3" value="{{number3}}" placeholder="请输入" placeholder-style="color:red" />
+            </view>
         </view>
-        <view bindtap="onButtonTap" class="btn-ok-view" id="btnOk" style="margin-left: 20rpx;">
+        <view class="title">点击下面的卡片，看一看你猜的数字在下面吗？</view>
+            <view wx:for="{{newArr}}" class='cards' style="font-family: sans-serif;">
+            <!-- background: url("../../images/normal.png"); -->
+                    <view class="card card_a" style='display:{{item.showA}};' bindtap='change' data-id='{{item.id}}'>A</view>
+            <!-- background: url("../../images/correct.png"); -->
+            <view wx:if="{{isWin==0}}" class="card card_b" style='display:{{item.showB}}; background-color:{{item.card_b}}' bindtap='change' data-id='{{item.id}}'>{{item.number}}</view>
+            <view wx:else="{{isWin==1}}" class="card card_b" style='display:{{item.showB}}; background-color:{{item.card_b}}' bindtap='change' data-id='{{item.id}}'>{{item.number}}</view>
+               
+        </view>
+    </view>
+    <view class="bottom-button">
+        <view class="button" style="width: 220rpx;">
+            <image wx:if="{{firstWin==1}}" class="icon-time" mode="scaleToFill" src="../../images/xing.png"></image>
+            <image wx:else="{{firstWin==0}}" class="icon-time" mode="scaleToFill" src="../../images/xing1.png"></image>
+            <image wx:if="{{secondWin==1}}" class="icon-time" mode="scaleToFill" src="../../images/xing.png"></image>
+            <image wx:else="{{secondWin==0}}" class="icon-time" mode="scaleToFill" src="../../images/xing1.png"></image>
+            <image wx:if="{{thirdWin==1}}" class="icon-time" mode="scaleToFill" src="../../images/xing.png"></image>
+            <image wx:else="{{thirdWin==0}}" class="icon-time" mode="scaleToFill" src="../../images/xing1.png"></image>
+        </view>
+        <view class="scoreview">
+            <image class="scoreicon" src="../../images/score.png"></image>
+            <view class="score">你的分数:{{score}}</view>
+        </view>
+    </view>
+    <view class="tiparea">
+        <text class="tiptext">{{textarea}}</text>
+    </view>
+    <view wx:if="{{again==1}}" bindtap="onButtonTap" class="btn-ok-view" style="margin-left: 130px;">
             <image class="btn-ok" mode="scaleToFill" src="../../images/btn.png"></image>
             <text class="btn-ok-txt">再来一次</text>
-        </view>
     </view>
 </view>

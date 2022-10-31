@@ -2,23 +2,122 @@
 <view class="cover">
 <!-- <view wx:if="{{!hasUserInfo}}" bindtap="login"> -->
   <!-- <image src="../../images/bg4.jpeg" class="bg"></image> -->
-  <image class="bg" mode="scaleToFill" src="../../images/bg.jpg"></image>
-  <van-image
-  round
-  fit="cover"
-  width="180rpx"
-  height="180rpx"
-  src="{{userInfo.avatarUrl}}" class="touxiang"/>
-  <view class="info">
-  <view class="info1">
-    <view bindtap="handleTapLogin" class="nickname">
-  {{userInfo.nickName}}
-  </view>
-  <button bindtap="skip" class="btn cu-btn bg-red round block lg margin-top">首页</button>
-  </view>
-    
-</view>
+    <image class="bg" mode="scaleToFill" src="../../images/bg8.jpeg"></image>
+    <!-- <van-image
+        round
+        fit="cover"
+        width="180rpx"
+        height="180rpx"
+        src="{{userInfo.avatarUrl}}" class="touxiang"/>
+    <view class="info">
+        <view class="info1">
+            <view bindtap="handleTapLogin" class="nickname">{{userInfo.nickName}}</view>
+        </view> 
+    </view> -->
 
+    <button class="touxiang-btn" open-type="chooseAvatar" bind:chooseavatar="onChooseAvatar">
+        <van-image round
+        fit="cover"
+        width="180rpx"
+        height="180rpx" class="touxiang" src="{{avatarUrl}}"/>
+    </button> 
+    <input type="nickname" class="info" placeholder="请输入昵称" value="{{nickname}}" bindinput="getinput"/>
+
+    <view class="index" wx:if="{{islogin==false}}">
+        <!-- <image class="bg1" mode="scaleToFill" src="../../images/bg8.jpeg"></image> -->
+        <view class="index1">
+            <view class="box2">
+            <navigator>
+                    <button  bindtap="skip" type="primary" class="btn">冒泡排序游戏</button>
+                </navigator>
+            </view>
+            <view class="box2">
+            <!-- url是我要跳转的页面 -->
+                    <button  bindtap="skip" type="primary" class="btn">顺序查找游戏</button>
+            
+            </view>
+            <view class="box2">
+                    <button bindtap="skip" type="primary" class="btn">汉诺塔游戏</button>
+            
+            </view>
+            <!-- <view class="box2">
+            <navigator url="../queue_game/queue_game">
+                    <button type="primary" class="btn">队列游戏</button>
+                </navigator>
+            </view> -->
+            <!-- <view class="box2">
+            <navigator url="../binary_game/binary_game">
+                    <button type="primary" class="btn">二进制游戏</button>
+                </navigator>
+            </view> -->
+            <view class="box2">
+                    <button bindtap="skip" type="primary" class="btn">二分查找游戏</button>
+            
+            </view>
+        </view>
+        <view class="index2">
+            <view class="box3">
+                <button  bindtap="skip" type="warn" class="btn">反馈</button>
+        
+            </view>
+            <view class="box3">
+                    <button  bindtap="skip" type="default">排行榜</button>
+            
+            </view>
+        </view>
+    </view>
+
+    <view class="index" wx:else="{{islogin==true}}">
+    <!-- <image src="../../images/bg4.jpeg" class="bg"></image> -->
+    <!-- <image class="bg1" mode="scaleToFill" src="../../images/bg8.jpeg"></image> -->
+        <view class="index1">
+            <view class="box2">
+            <navigator url="../bubblesort_game/bubblesort_game">
+                    <button type="primary" class="btn">冒泡排序游戏</button>
+                </navigator>
+            </view>
+            <view class="box2">
+            <!-- url是我要跳转的页面 -->
+                <navigator url="../search_game/search_game">
+                    <button type="primary" class="btn">顺序查找游戏</button>
+                </navigator>
+            </view>
+            <view class="box2">
+            <navigator url="../stack_game/game">
+                    <button type="primary" class="btn">汉诺塔游戏</button>
+                </navigator>
+            </view>
+            <!-- <view class="box2">
+            <navigator url="../queue_game/queue_game">
+                    <button type="primary" class="btn">队列游戏</button>
+                </navigator>
+            </view> -->
+            <!-- <view class="box2">
+            <navigator url="../binary_game/binary_game">
+                    <button type="primary" class="btn">二进制游戏</button>
+                </navigator>
+            </view> -->
+            <view class="box2">
+            <navigator url="../search_gamerules/search_gamerules">
+                    <button type="primary" class="btn">二分查找游戏</button>
+                </navigator>
+            </view>
+        </view>
+        <view class="index2">
+            <view class="box3">
+                
+                <navigator url="../About/About">
+                <button type="warn" class="btn">反馈</button>
+            </navigator>
+            </view>
+            <view class="box3">
+                <navigator url="../rank/rank">
+                    <button type="default">排行榜</button>
+                </navigator>
+            </view>
+        </view>
+        
+    </view>
 </view>
 
 

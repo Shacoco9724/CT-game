@@ -1,0 +1,198 @@
+/**index.wxss**/
+.bg{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 750rpx;
+  height: 100vh;
+  z-index: -1;
+}
+.count{
+  /* margin-top: 10rpx; */
+  margin-left: 15rpx;
+  font-size: 36rpx;
+  font-family: PingFangSC-Regular;
+  color: rgba(255,255,255,0.95);
+
+  /* color: red;
+  font-size: 23px; */
+  margin-top: 30px;
+  margin-bottom: 30px;
+  margin-right:20px;
+}
+.userinfo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #aaa;
+}
+
+.userinfo-avatar {
+  overflow: hidden;
+  width: 128rpx;
+  height: 128rpx;
+  margin: 20rpx;
+  border-radius: 50%;
+}
+
+.head-img {
+  margin-top: 10px;
+  width: 100px;
+  height: 100px;
+}
+
+.usermotto {
+  margin-top: 20px;
+}
+
+.hanoi-count {
+  margin-top: 30px;
+  margin-inline: auto;
+  width: 90px;
+  border: 1px solid rgb(42, 240, 108);
+  
+}
+
+.start-button {
+  margin-top: 60px;
+}
+
+.horizontal {
+  width: 750rpx;
+  height: 30rpx;
+  background-color: rgba(165, 137, 77, 0.7);
+
+}
+
+.vertical1 {
+  width: 25rpx;
+  height: 600rpx;
+  background-color: rgba(8, 131, 25, 0.9);
+  margin-left: 53px;
+}
+
+.vertical2 {
+  width: 25rpx;
+  height: 600rpx;
+  background-color: rgba(29, 110, 7, 0.8);
+}
+
+.vertical3 {
+  width:25rpx;
+  height: 600rpx;
+  background-color: rgba(5, 105, 35, 0.9);
+  margin-right: 53px;
+}
+
+.gameCanavs {
+  width: 750rpx;
+  height: 600rpx;
+}
+
+.items {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  
+}
+
+.item {
+  width: 100px;
+  
+}
+.stickitem{
+  background-color: rgb(252, 232, 122);
+}
+.stick {
+  text-align: center;
+  
+}
+.back{
+  margin-top: 20px;
+}
+
+.btn-ok {
+  position: absolute;
+  width: 200rpx;
+  height: 81rpx;
+}
+
+.btn-ok-view {
+  /* margin-top: 200px; */
+  z-index: 997;
+  width: 200rpx;
+  height: 81rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* margin-bottom: -180px; */
+}
+
+.btn-ok-txt {
+  z-index: 997;
+  color: #fff;
+  font-size: 32rpx;
+  font-family: PingFangSC-Regular;
+}
+
+.bottom-button {
+  margin-top: 20px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.bottom{
+  width: 100%;
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.button {
+  height: 90rpx;
+  border-radius: 45rpx;
+  background-color: rgba(6, 179, 35, 0.8);
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+.icon-time {
+  /* margin-left:-20px; */
+  width: 75rpx;
+  height: 55rpx;
+}
+.btn-text {
+  margin-left: 10rpx;
+  font-size: 36rpx;
+  font-family: PingFangSC-Regular;
+  color: rgba(255,255,255,0.95);
+}
+.tip{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+}
+.tipgoal{
+  margin-top: 12px;
+  /* margin-left: 10px; */
+  font-size: 17px;
+  color: rgb(22, 22, 19);
+  font-family: PingFangSC-Regular;
+  z-index: 997;
+}
+.tipimage{
+  position: absolute;
+  width: 700rpx;
+  height: 100rpx;
+  /* margin-left: 50px; */
+  margin-top: 20px;
+}
+.tiparea{
+  height: 40px;
+  margin-top: 20px;
+  background-color: rgb(253, 253, 188,0.6);
+}

@@ -2,18 +2,53 @@
 .demo-box{
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: space-around;
+    align-items: center; 
+     justify-content: space-around;
     /* width: 400rpx; */
     height: 100vh;
   }
-  text{
-    margin: 0 50rpx;
-    line-height: 100rpx;
+  .bg{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 750rpx;
+    height: 100vh;
   }
-  input{
-    border: 1px solid grey;
+  text{
+    position: relative;
+    z-index: 1;
+    margin: 0 80rpx;
+    line-height: 60rpx;
+    font-size: 15px;
+    font-family: PingFangSC-Regular;
+  }
+  .form{
+    margin-top: -20px;
+    border-radius: 1px solid red;
+  }
+  .input{
+    z-index: 999;
+    color:black;
+    border: 3px solid grey;
  }
  textarea{
    border: 1px solid grey;
+   height: 100px;
  }
+ .tile{
+   z-index: 999;
+  border: 1px solid red;
+ }
+ .submit{
+   margin-top: 10px;
+ }
+ .clear{
+   margin-top: 10px;
+ }
+.title{
+  margin-left: 0px;
+  color: rgb(255, 102, 0);
+  font-size: 15px;
+}
+
+ 

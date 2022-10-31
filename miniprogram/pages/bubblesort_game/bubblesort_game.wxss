@@ -49,11 +49,12 @@ movable-area{
     height: 160rpx;
     margin-left: 20rpx;
     margin-top: 150rpx;
-    border: 1px solid red;
+    /* border: 1px solid red; */
+    border-radius: 30%;
     text-align: center;
     font-size: 42rpx;
     line-height: 160rpx;
-    background:linear-gradient(90deg, #ffa96f 0%, #ffc5b4 52%, #ffe4ce 100%);
+    /* background:linear-gradient(90deg, #ffa96f 0%, #ffc5b4 52%, #ffe4ce 100%); */
     /* background:url('../../images/item1.jpeg'); */
     /* background-image: url(../../images/item1.jpeg); */
 }
@@ -64,11 +65,12 @@ movable-area{
     background: firebrick;
 }
 .item-move{
-    /* display: inline-block; */
+    display: inline-block;
     width: 84rpx;
     height: 160rpx;
-    border: 1px solid blue;
-    /* background-color: yellow; */
+    /* border: 1px solid blue; */
+    border: 1px solid #ffa96f;
+    border-radius: 30%;
 }
 /* .hinder-area{
     position: relative;
@@ -76,24 +78,70 @@ movable-area{
     margin-top: 200rpx;
     color:red;
 } */
+.changeTexticon{
+  position: relative;
+  color: green;
+  margin-top:210px;
+  width: 60px;
+  height: 60px;
+  /* margin-left: 80px; */
+}
+
 .changeText{
     position: relative;
-    color: green;
-    margin-top: 300px;
+    color: rgb(255, 251, 0);
+    margin-top:-50px;
+    display: flex;
+    flex-direction: row;
+    margin-left: 70px;
+}
+.changeText1{
+  position: absolute;
+    color: rgb(247, 197, 60);
+    /* margin-top:50px; */
+    display: flex;
+    flex-direction: row;
+    margin-left: 70px;
+    font-size: 19px;
+    margin-bottom: 20px;
+}
+.scoreview{
+  /* margin-top: 200px; */
+  z-index: 999;
+  width: 250rpx;
+  height: 81rpx;
+  /* display: flex;
+  justify-content: center;
+  align-items: center; */
+  display: flex;
+    flex-direction: row;
+    /* justify-content: center;  */
+    align-items: center;
+  /* margin-bottom: -180px; */
+  margin-top: 160px;
+  margin-left: 10px;
+}
+.scoreicon{
+  position: absolute;
+  width: 250rpx;
+  height: 120rpx;
+  /* margin-top: 150px;
+  margin-left: 200px; */
+  
 }
 .score{
     position: relative;
+    /* margin-top:70px;
+    z-index:999; */
+    z-index: 999;
+    color: #fff;
+    font-size: 36rpx;
+    font-family: PingFangSC-Regular;
+    /* margin-top: 140px; */
+    left:20px;
 }
-  .music {
-    width: 86rpx;
-    height: 86rpx;
-    position: absolute;
-    top: 108rpx;
-    right: 10rpx;
-    z-index: 99;
-    /* background-color: firebrick; */
-  }
-  .circle {
+
+.circle {
     animation: cirlce 4s linear infinite;
   }
   @keyframes cirlce {
@@ -104,7 +152,92 @@ movable-area{
       transform: rotate(359deg);
     }
   }
-  .change_sort{
-      position: relative;
+  .btn-ok {
+    position: absolute;
+    width: 200rpx;
+    height: 81rpx;
+    margin-top: 20px;
+  }
+  
+  .btn-ok-view {
+    /* margin-top: 200px; */
+    z-index: 999;
+    width: 200rpx;
+    height: 81rpx;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 150px;
+    /* margin-bottom: -180px; */
+  }
+  
+  .btn-ok-txt {
+    z-index: 999;
+    color: #fff;
+    font-size: 32rpx;
+    font-family: PingFangSC-Regular;
+    margin-top: 20px;
+  }
+  
+  .bottom-button {
+    width: 100%;
+    display: flex;
+    justify-content: center; 
+     align-items: center;
+     margin-top: 40px;
+  }
+  .button-xing{
+    z-index: 999;
+    /* height: 81rpx;
+    display: flex;
+    justify-content: center;
+    align-items: center;  */
+    height: 90rpx;
+    border-radius: 45rpx;
+    background-color: rgba(10,155,175,0.8);
+    display: flex;
+    flex-direction: row;
+    /* justify-content: center;  */
+    align-items: center;
+    margin-top: 160px;
+    margin-left: 10px;
+  }
+  .button-time{
+    z-index: 999;
+    width: 200rpx;
+   /* height: 81rpx;
+   display: flex;
+   justify-content: center;
+   align-items: center;  */
+   height: 90rpx;
+   border-radius: 45rpx;
+   background-color: rgba(10,155,175,0.8);
+   display: flex;
+   flex-direction: row;
+   /* justify-content: center;  */
+   align-items: center;
+   margin-top: 160px;
+   margin-left: 10px;
+  }
+  .icon-time {
+    width: 69rpx;
+    height: 50rpx;
+    /* margin-top: 50px; */
+    margin-left: 4px;
+  }
+  .btn-text {
+    /* margin-top: 50px; */
+    margin-left: 5rpx;
+    font-size: 36rpx;
+    font-family: PingFangSC-Regular;
+    color: rgba(255,255,255,0.95);
+  }
+  .tipText{
+    position: relative;
+    color: green;
+    margin-top:40px;
+    display: flex;
+    flex-direction: row;
+    margin-left: 20px;
   }
   

@@ -1,46 +1,179 @@
-<!--pages/rank/rank.wxml-->
-<text>pages/rank/rank.wxml</text>
-<view>
-    <text>冒泡排序排行榜{{nickName}}</text>
-    <view class="bubblesort_rank">
-        <!-- <view class="table">
- <view class="tr bg-w">
- <view class="th">head1</view>
- <view class="th">head2</view>
- <view class="th ">head3</view>
- </view> -->
- <!-- <block wx:for="{{listData}}" wx:key="{[code]}">
- <view class="tr bg-g" wx:if="{{index % 2 == 0}}">
- <view class="td">{{item.code}}</view>
- <view class="td">{{item.score}}</view>
- <view class="td">{{item.rank}}</view>
- </view>
- <view class="tr" wx:else>
- <view class="td">{{item.code}}</view>
- <view class="td">{{item.score}}</view>
- <view class="td">{{item.rank}}</view>
- </view>
- </block> -->
-    <!-- </view> -->
-    
-
-<view class="mw-page">
-  <view class="cu-list menu menu-avatar mw-menu">
-    <view class="cu-item" wx:for="{{rankList}}" wx:key="index">
-      <view class="cu-avatar round lg" style="background-image:url({{item.avatarUrl}});"></view>
-      <view class='content'>
-        <view class='text-gray'>
-          <text class="{{index+1 <= 3?'icon-upstagefill text-yellow':'icon-medalfill text-gray'}}"></text> 第<text class="{{index+1 <= 3?'text-yellow':'text-gray'}} text-xl">{{index+1}}</text>名
+<view class="container">
+    <scroll-view enableBackToTop scrollY scrollIntoView="{{toView}}" style="height: {{scrollHeight}}px; background-color: #1bb5c5;">
+    <view class="top-bar">
+        <!-- <image bindtap="onButtonTap" class="btn-back" id="btnBack" mode="scaleToFill" src="../../images/btn_back.png"></image> -->
+        <text class="title">最佳纪录</text>
+    </view>
+    <view class="type-area {{scrollTop>100?'totop':''}}">
+        <view bindtap="onButtonTap" class="text-area" data-type="3" id="btnType">
+            <text class="type {{currentType==3?'type-active':''}}">冒泡排序</text>
         </view>
-        <view class='text-grey text-sm'>{{item.nickName}}</view>
-      </view>
-      <view class='action'>
-        <view class='text-red text-xl'>{{item.score}}分</view>
-      </view>
-      <view>时间：{{item.time}}</view>
+        <view bindtap="onButtonTap" class="text-area" data-type="4" id="btnType">
+            <text class="type {{currentType==4?'type-active':''}}">顺序查找</text>
+        </view>
+        <view bindtap="onButtonTap" class="text-area" data-type="5" id="btnType">
+            <text class="type {{currentType==5?'type-active':''}}">汉诺塔</text>
+        </view>
+        <view bindtap="onButtonTap" class="text-area" data-type="6" id="btnType">
+            <text class="type {{currentType==6?'type-active':''}}">二分查找</text>
+        </view>
+
     </view>
-  </view>
-</view>
+    <view class="scroll-view-content">
+        <!-- <scroll-view enableBackToTop scrollY scrollIntoView="{{toView}}" style="height: {{scrollHeight}}px; background-color: #fff;"> -->
+            <view class="scroll">
+                <view>
+                    <view class="rank" wx:if="{{currentType==3}}">
+                    <!-- 冒泡排序排行榜 -->
+                        <view class="ranktitle">
+                            <text class="paiming1">排名</text>
+                            <text class="nicheng1">昵称</text>
+                            <text class="fenshu1">分数</text>
+                            <text class="xingji1">星级</text>
+                            <text class="shijian1">时间</text>
+                        </view>
+                        <view class="mw-page">
+                            <view class="cu-list menu menu-avatar mw-menu">
+                                <view class="cu-item" wx:for="{{rankList1}}" wx:key="index">
+                                    <view class="cu-avatar round lg" style="background-image:url({{item.avatarUrl}});"></view>
+                                    <view class='content'>
+                                        <view class='text-gray'>
+                                            <text class="{{index+1 <= 3?'icon-upstagefill text-yellow':'icon-medalfill text-gray'}}"></text> <text class="{{index+1 <= 3?'text-yellow':'text-gray'}} text-xl">{{index+1}}</text>
+                                        </view>
+                                        <view class='text-sm'>{{item.nickName}}</view>
+                                    </view>
+                                    <view class='maopao_fenshu'>
+                                        <view class='text-red text-xl'>{{item.score}}分</view>
+                                    </view>
+                                    <view class="maopao_xingji">
+                                        <image wx:if="{{item.firstwin==1}}" class="icon-time" mode="scaleToFill" src="../../images/xing.png"></image>
+                                        <image wx:if="{{item.secondwin==1}}" class="icon-time" mode="scaleToFill" src="../../images/xing.png"></image>
+                                        <image wx:if="{{item.thirdwin==1}}" class="icon-time" mode="scaleToFill" src="../../images/xing.png"></image>
+                                        <!-- <image wx:if="{{item.forthWin==1}}" class="icon-time" mode="scaleToFill" src="../../images/xing.png"></image>
+                                        <image wx:if="{{item.fifthWin==1}}" class="icon-time" mode="scaleToFill" src="../../images/xing.png"></image>
+                                        <image wx:if="{{item.sixthWin==1}}" class="icon-time" mode="scaleToFill" src="../../images/xing.png"></image>
+                                        <image wx:if="{{item.seventhWin==1}}" class="icon-time" mode="scaleToFill" src="../../images/xing.png"></image> -->
+                                    </view>
+                                    <view class="time">{{item.timecount}}秒</view>
+                                    <!-- <view>----------------</view> -->
+                                </view>
+                            </view>
+                        </view>
+                    </view>
+                    <view class="rank" wx:if="{{currentType==4}}">
+                        <!-- <text>顺序查找排行榜{{item.nickName}}</text> -->
+                        <view class="ranktitle">
+                            <text class="paiming2">排名</text>
+                            <text class="nicheng2">昵称</text>
+                            <text class="fenshu2">分数</text>
+                            <text class="xingji2">星级</text>
+                            <text class="shijian2">日期</text>
+                        </view>
+                        <view class="mw-page">
+                            <view class="cu-list menu menu-avatar mw-menu">
+                                <view class="cu-item" wx:for="{{rankList2}}" wx:key="index">
+                                    <view class="cu-avatar round lg" style="background-image:url({{item.avatarUrl}});"></view>
+                                    <view class='shunxu_content'>
+                                        <view class='shunxu_paiming'>
+                                            <text class="{{index+1 <= 3?'icon-upstagefill text-yellow':'icon-medalfill text-gray'}}"></text> <text class="{{index+1 <= 3?'text-yellow':'text-gray'}} text-xl">{{index+1}}</text>
+                                        </view>
+                                        <view class='shunxu_nicheng'>{{item.nickName}}</view>
+                                    </view>
+                                    <view class='shunxu'>
+                                        <view class='text-red text-xl'>{{item.score}}分</view>
+                                    </view>
+                                    <view class='shunxu'>
+                                        <!-- <view class='text-red text-xl'>{{item.score}}分</view> -->
+                                        <image wx:if="{{item.firstWin==1}}" class="icon-time" mode="scaleToFill" src="../../images/xing.png"></image>
+                                        <image wx:if="{{item.secondWin==1}}" class="icon-time" mode="scaleToFill" src="../../images/xing.png"></image>
+                                        <image wx:if="{{item.thirdWin==1}}" class="icon-time" mode="scaleToFill" src="../../images/xing.png"></image>
+                                    </view>
+                                    <view class="shunxu">{{item.time}}</view>
+                                </view>
+                            </view>
+                        </view>
+                    </view>
+                    <view class="rank" wx:if="{{currentType==5}}">
+                        <!-- <text>汉诺塔排行榜{{item.nickName}}</text> -->
+                        <view class="ranktitle">
+                            <text class="paiming3">排名</text>
+                            <text class="nicheng3">昵称</text>
+                            <text class="level3">关卡</text>
+                            <text class="xingji3">星级</text>
+                            <text class="shichang3">时长</text>
+                            <text class="riqi3">日期</text>
+                        </view>
+                        <view class="mw-page">
+                            <view class="cu-list menu menu-avatar mw-menu">
+                                <view class="cu-item" wx:for="{{rankList3}}" wx:key="index">
+                                    <view class="cu-avatar round lg" style="background-image:url({{item.avatarUrl}});"></view>
+                                    <view class='content'>
+                                        <view class='text-gray'>
+                                            <text class="{{index+1 <= 3?'icon-upstagefill text-yellow':'icon-medalfill text-gray'}}"></text>
+                                            <text class="{{index+1 <= 3?'text-yellow':'text-gray'}} text-xl">{{index+1}}</text>
+                                        </view>
+                                        <view class='text-grey text-sm'>{{item.nickName}}</view>
+                                    </view>
+                                    <view class='hanoi'>
+                                        <view class="hanoi_level">{{item.count}}层</view>
+                                    </view>
+                                    <view class='hanoi_xingji'>
+                                        <!-- <view class='text-red text-xl'>{{item.score}}分</view> -->
+                                        <image wx:if="{{item.firstWin==1}}" class="hanoi-icon-time" mode="scaleToFill" src="../../images/xing.png"></image>
+                                        <image wx:if="{{item.secondWin==1}}" class="hanoi-icon-time" mode="scaleToFill" src="../../images/xing.png"></image>
+                                        <image wx:if="{{item.thirdWin==1}}" class="hanoi-icon-time" mode="scaleToFill" src="../../images/xing.png"></image>
+                                    </view>
+                                    <view class='hanoi'>
+                                        <view class='text-red text-xl'>{{item.timecount}}秒</view>
+                                    </view>
+                                    <view class="hanoi">{{item.time}}</view>
+                                </view>
+                            </view>
+                        </view>
+                    </view>
+                    <view class="rank" wx:if="{{currentType==6}}">
+                        <!-- <text>二分查找排行榜{{item.nickName}}</text> -->
+                        <view class="ranktitle">
+                            <text class="paiming3">排名</text>
+                            <text class="nicheng4">昵称</text>
+                            <text class="fenshu4">分数</text>
+                            <text class="xingji4">星级</text>
+                            <text class="shichang4">时长</text>
+                            <text class="riqi4">日期</text>
+                        </view>
+                        <view class="mw-page">
+                            <view class="cu-list menu menu-avatar mw-menu">
+                                <view class="cu-item" wx:for="{{rankList4}}" wx:key="index">
+                                    <view class="cu-avatar round lg" style="background-image:url({{item.avatarUrl}});"></view>
+                                    <view class='erfen_content'>
+                                        <view class='text-gray'>
+                                            <text class="{{index+1 <= 3?'icon-upstagefill text-yellow':'icon-medalfill text-gray'}}"></text><text class="{{index+1 <= 3?'text-yellow':'text-gray'}} text-xl">{{index+1}}</text>
+                                        </view>
+                                        <view class='text-grey text-sm'>{{item.nickName}}</view>
+                                    </view>
+                                    <view class='erfen'>
+                                        <view class='erfen_fenshu'>{{item.restcount}}分</view>
+                                    </view>
+                                    <view class='erfen_xingji'>
+                                        <!-- <view class='text-red text-xl'>{{item.score}}分</view> -->
+                                        <image wx:if="{{item.firstWin==1}}" class="hanoi-icon-time" mode="scaleToFill" src="../../images/xing.png"></image>
+                                        <image wx:if="{{item.secondWin==1}}" class="hanoi-icon-time" mode="scaleToFill" src="../../images/xing.png"></image>
+                                        <image wx:if="{{item.thirdWin==1}}" class="hanoi-icon-time" mode="scaleToFill" src="../../images/xing.png"></image>
+                                    </view>
+                                    <view class='hanoi'>
+                                        <view class='text-red text-xl'>{{item.timecount}}秒</view>
+                                    </view>
+                                    <view class="hanoi">{{item.time}}</view>
+                                </view>
+                            </view>
+                        </view>
+                    </view>
+                </view>
+            </view>
+        <!-- </scroll-view> -->
     </view>
+</scroll-view>
 </view>
+<widget-login bindloginevent="onLoginEvent" popup="{{popupLogin}}"></widget-login>
+
 <view class="search_rank">查找算法排行榜</view>

@@ -1,8 +1,18 @@
-<!--pages/stack-queue_game/stack-queue_game.wxml-->
-<view>
-    <image class="bg"></image>
-    <image src="../../images/stack.png" class="stack"></image>
-    <view class="container">
-        
-    </view>
+<!--index.wxml-->
+<view class="container">
+  <image class="bg" mode="scaleToFill" src="../../images/hanoi.jpeg"></image>
+  <view class="head">
+    <image bindtap="hanoi3"  class="head-img" src="../../images/33.png"></image>
+    <image bindtap="hanoi4"  class="head-img" src="../../images/44.png"></image>
+    <image bindtap="hanoi5"  class="head-img" src="../../images/55.png"></image>
+  </view>
+ 
+  
+  <view class="usermotto">
+    <text class="user-motto">{{motto}}</text>
+  </view>
+  <!-- <form class="submit" style=" display: flex; height: 40px;margin: 20px; border: 3px solid #faca82; border-radius: 10rpx;" catchsubmit="formSubmit">
+    <input class="hanoi-count" style=" margin: auto 10px;" type="number" placeholder="请输入数量(<=5)" name="input"></input>
+    <button class="start-button" type="primary" form-type="submit">开始游戏</button>
+  </form> -->
 </view>

@@ -5,6 +5,7 @@
     "pages/search_game/search_game",
     "pages/bubblesort_game/bubblesort_game",
     "pages/stack_game/stack_game",
+    "pages/stack_game/game",
     "pages/queue_game/queue_game",
     "pages/binary_game/binary_game",
     "pages/search_gamerules/search_gamerules",

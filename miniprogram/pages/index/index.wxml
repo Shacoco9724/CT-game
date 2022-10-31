@@ -3,7 +3,7 @@
 
 <view class="index">
 <!-- <image src="../../images/bg4.jpeg" class="bg"></image> -->
-<image class="bg" mode="scaleToFill" src="../../images/bg.jpg"></image>
+<image class="bg" mode="scaleToFill" src="../../images/bg8.jpeg"></image>
     <view class="index1">
         <view class="box2">
         <navigator url="../bubblesort_game/bubblesort_game">
@@ -18,7 +18,7 @@
         </view>
         <view class="box2">
         <navigator url="../stack_game/stack_game">
-                <button type="primary" class="btn">栈游戏</button>
+                <button type="primary" class="btn">汉诺塔游戏</button>
             </navigator>
         </view>
         <view class="box2">

@@ -1,24 +1,41 @@
-/* pages/queue_game/queue_game.wxss */
-.bg{
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 750rpx;
-    height: 100vh;
-    background-color: rgb(168, 242, 255);
-  }
-  .queue{
-    position: absolute;
-    width: 200px;
-    height: 200px;
-    top:-10px;
-    left: 40px;
-    
-  }
-  #container{
-    margin-top: 200px;
-    width: 100%;
-    /* height: 350rpx; */
-    height: 100px;
-    position: relative;
-  }
+.container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 200rpx 0;
+  box-sizing: border-box;
+}
+
+.box {
+  width: 300px;
+  position: relative;
+}
+
+.main {
+  width: 50%;
+  height: 50px;
+  background: rgb(245, 112, 112);
+  border: 1px solid rgb(0, 0, 0);
+  margin: 2px auto;
+  text-align: center;
+  line-height: 50px;
+  border-radius: 40%;
+  margin-top: 20px;
+}
+
+.mainmove {
+  position: absolute;
+  opacity: 0.7
+}
+
+.maind {
+  background: #fff;
+  border: 1px dashed #efefef;
+}
+
+.mainend {
+  position: static;
+  opacity: 1;
+}

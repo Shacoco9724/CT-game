@@ -10,25 +10,52 @@
 </view> -->
 <view>
     <image class="bg" src="../../images/bg.jpg"></image>
-    <image src="../../images/guess1.png" class="guess"></image>
+    <image src="../../images/guess2.png" class="guess"></image>
     <view id="container">
-    <view>生成一个随机数：{{rand}}</view>
-    <view wx:for="{{newArr}}" class='cards' style="font-family: sans-serif;">
-    <!-- background: url("../../images/normal.png"); -->
-        <view class="card card_a" style='display:{{item.showA}};' bindtap='change' data-id='{{item.id}}'>A</view>
-<!-- background: url("../../images/correct.png"); -->
-    <view wx:if="{{isWin==0}}" class="card card_b" style='display:{{item.showB}}; background-color:{{item.card_b}}' bindtap='change' data-id='{{item.id}}'>{{item.number}}</view>
-    <view wx:else="{{isWin==1}}" class="card card_b" style='display:{{item.showB}}; background-color:{{item.card_b}}' bindtap='change' data-id='{{item.id}}'>{{item.number}}</view>
-    </view>
-</view>
-<view class="bottom-button">
+        <view class="titlearea">
+            <image class="titleimage" src="../../images/score.png"></image>
+            <text class="titletext">猜一猜哪个数字才是要找的呢？</text>
+        </view>
+        <!-- <view>生成一个随机数：{{rand}}</view> -->
+            <view wx:for="{{newArr}}" class='cards' style="font-family: sans-serif;">
+            <!-- background: url("../../images/normal.png"); -->
+                    <view class="card card_a" style='display:{{item.showA}};' bindtap='change' data-id='{{item.id}}'>{{item.number}}</view>
+            <!-- background: url("../../images/correct.png"); -->
+            <view wx:if="{{isWin==0}}" class="card card_b" style='display:{{item.showB}}; background:{{item.card_b}}' bindtap='change' data-id='{{item.id}}'>NO</view>
+            <view wx:else="{{isWin==1}}" class="card card_b" style='display:{{item.showB}}; background:{{item.card_b}}' bindtap='change' data-id='{{item.id}}'>{{item.number}}</view>
+               
+        </view>
+    </view>
+    <view class="bottom-button">
         <view bindtap="onButtonTap" class="btn-ok-view" id="btnBack" style="margin-left: 20rpx;">
             <image class="btn-ok" mode="scaleToFill" src="../../images/btn.png"></image>
-            <text class="btn-ok-txt">回到首页</text>
+            <text class="btn-ok-txt">分数:{{restcount}}</text>
         </view>
-        <view bindtap="onButtonTap" class="btn-ok-view" id="btnOk" style="margin-left: 20rpx;">
-            <image class="btn-ok" mode="scaleToFill" src="../../images/btn.png"></image>
-            <text class="btn-ok-txt">再来一次</text>
+        <view class="button" style="width: 270rpx;">
+            <image class="icon-time" mode="scaleToFill" src="../../images/icon_time.png"></image>
+            <block wx:if="{{timecount>0}}">
+                <text class="btn-text"></text>
+                <text class="btn-text">{{timecount}}"</text>
+            </block>
+            <text class="btn-text" wx:else>计时中</text>
         </view>
+        <view class="icon-xing" style="margin-left: 20rpx; width: 130px;">
+            <image wx:if="{{firstWin==1}}" class="icon-time" mode="scaleToFill" src="../../images/xing.png"></image>
+            <image wx:else="{{firstWin==0}}" class="icon-time" mode="scaleToFill" src="../../images/xing1.png"></image>
+            <image wx:if="{{secondWin==1}}" class="icon-time" mode="scaleToFill" src="../../images/xing.png"></image>
+            <image wx:else="{{secondWin==0}}" class="icon-time" mode="scaleToFill" src="../../images/xing1.png"></image>
+            <image wx:if="{{thirdWin==1}}" class="icon-time" mode="scaleToFill" src="../../images/xing.png"></image>
+            <image wx:else="{{thirdWin==0}}" class="icon-time" mode="scaleToFill" src="../../images/xing1.png"></image>
+        </view>
+
+    </view>
+
+    <view class="tip-view">
+        <text class="tip-text">开始分数为5分，点击错误减1分；分数为0则结束游戏。</text>
+        <text class="tip-text">小提示：尽量点击中间的数字哦</text>
+    </view>
+    <view wx:if="{{isWin==1}}" bindtap="onButtonTap" class="again-view" id="btnOk" style="margin-left: 120rpx;">
+        <image class="again" mode="scaleToFill" src="../../images/again.png"></image>
+        <text class="again-text">再来一次</text>
     </view>
 </view>

@@ -6,15 +6,33 @@ Page({
      * 页面的初始数据
      */
     data: {
-        userInfo:{nickName:'点击登录'},
+        // userInfo:{nickName:'点击登录'},
         hasUserInfo:false,
         islogin: false, //声明一个变量,默认为false,一旦登录成功,改为true
+        nickname:'',
+    },
+
+    onChooseAvatar:function(e) {
+      const { avatarUrl } = e.detail 
+      this.setData({
+        avatarUrl,
+      })
+    },
+
+    getinput:function(e){
+      if(e.detail.value){
+        console.log(e)
+        this.setData({
+          nickname:e.detail.value,
+          islogin:true,
+        })
+      }
     },
     /**
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
-
+     
     },
     /**
      * 生命周期函数--监听页面初次渲染完成
@@ -106,18 +124,18 @@ Page({
 //   跳转到游戏选择页面
   skip(){
     //   检查是否是登陆状态
-    if(this.data.islogin){
-        wx.navigateTo({
-            url: '/pages/index/index'
-          })
-     }
-     else{
+    // if(this.data.islogin){
+    //     wx.navigateTo({
+    //         url: '/pages/login/index'
+    //       })
+    //  }
+    //  else{
          wx.showToast({
            title: '没有登陆，请先登录',
            icon:"none",
            duration:2000
          })
-     }
+    //  }
   },
   //访问自己家数据库执行登录业务
   //1.若在users集合中找到用户信息,那么直接更新UI
@@ -136,7 +154,7 @@ Page({
         }
       })
     //   登陆成功后才可以执行跳转页面，跳到游戏选择页面
-      this.skip()
+      // this.skip()
   },
   //注册业务  将userInfo存入users集合
   regist(){

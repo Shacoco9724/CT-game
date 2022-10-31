@@ -1,41 +1,76 @@
 <view class='outer'>
   <!-- style="background:url('../../images/bg1.jpeg');" -->
   <!-- style="background-image: url(../../images/bg2.jpeg);" -->
- 
-  <view class='inner'>
+
+  <view class='inner' style="color:{{textcolor}};">
     <image class="bg" mode="scaleToFill" src="../../images/bg.jpg"></image>
     <image src="../../images/bubblesortgame1.png" class="bubble"></image>
-    <image src="{{checked?'../../images/music.png':'../../images/music.png'}}" class="music {{!checked && 'circle'}}" catchtap="checkMusic"></image>
-    
-    <view class="title-text">亲爱的同学，来试试</view> 
-    <view class="title-text">数字排序吧！</view>
-    <movable-area> 
+    <!-- <image src="{{checked?'../../images/music.png':'../../images/music.png'}}" class="music {{!checked && 'circle'}}" catchtap="checkMusic"></image> -->
+
+    <view class="title-text">试试把卡牌按顺序排列，</view>
+    <view class="title-text">点亮下面的星星哦！</view>
+    <movable-area>
       <block wx:for="{{data}}">
         <!-- style="background:url('../../images/item1.jpeg');" -->
-        <view class='item' style="background:url('../../images/item1.jpeg');"  id="{{item.index}}" data-index='{{index}}' bindlongpress='_longtap' bindtouchstart='touchs' bindtouchend='touchend' bindtouchmove='touchm'>
-        
+        <view class='item' style="background: {{item.bgcolor}};" id="{{item.index}}" data-index='{{index}}' bindlongpress='_longtap' bindtouchstart='touchs' bindtouchend='touchend' bindtouchmove='touchm'>
           <text>{{item.index}}</text>
         </view>
       </block>
       <movable-view x="{{x}}" y="{{y}}" direction="all" damping="{{5000}}" friction="{{1}}" disabled="{{disabled}}">
         <view class='item-move' hidden='{{hidden}}'>
+          <text class="move-text" hidden='{{hidden}}'>{{item.index}}</text>
         </view>
       </movable-view>
     </movable-area>
-    
-    <!-- <view class="hinder-area">
-      <view class="hinder-area" bindtap="touchend" >点击这里，上面的卡牌可以随机分配数字 </view>
-      <button  bindtap="changeNumber">点击我，随机数</button>
-    </view>  -->
-    <view class="changeText">提示区域：
-      只能交换相邻的两张卡牌哦，
-      从前面开始按从小到大的顺序进行排列
-      {{textarea}}
+    <image class="changeTexticon" src="../../images/icon.png"></image>
+    <view class="changeText">游戏规则：长按选中卡牌，从末尾处开始，只能交换相邻的两张卡牌哦。(交换错误分数减1，为0时游戏失败)
     </view>
-    <view class="score">你的分数{{score}}</view>
+    <view class="changeText1">{{textarea}}</view>
+    <!-- <view class="scoreview">
+      <image class="scoreicon" src="../../images/score.png"></image>
+      <view class="score">剩余次数:{{score}}</view>
+    </view> -->
+    <view class="tipText">小提示：开始分数为7分，尽量保证你的分数不减掉哦，这样你得到的星级就越高哦</view>
   </view>
-  <button bindtap="submit" data-id="{{item.typeId}}">提交排序结果</button>
-  <view class="change_sort">交换顺序
-  <view>{{begin}}-{{end}}</view>
+  <view class="bottom-button">
+    <view class="scoreview">
+      <image class="scoreicon" src="../../images/score.png"></image>
+      <view class="score">你的分数:{{score}}</view>
+    </view>
+    <view class="button-xing" style="width: 250rpx;">
+      <image wx:if="{{firstwin==1}}" class="icon-time" mode="scaleToFill" src="../../images/xing.png"></image>
+      <image wx:else="{{firstin==0}}" class="icon-time" mode="scaleToFill" src="../../images/xing1.png"></image>
+      <image wx:if="{{secondwin==1}}" class="icon-time" mode="scaleToFill" src="../../images/xing.png"></image>
+      <image wx:else="{{secondwin==0}}" class="icon-time" mode="scaleToFill" src="../../images/xing1.png"></image>
+      <image wx:if="{{thirdwin==1}}" class="icon-time" mode="scaleToFill" src="../../images/xing.png"></image>
+      <image wx:else="{{thirdwin==0}}" class="icon-time" mode="scaleToFill" src="../../images/xing1.png"></image>
+      <!-- <image wx:if="{{forthWin==1}}" class="icon-time" mode="scaleToFill" src="../../images/xing.png"></image>
+      <image wx:else="{{forthWin==0}}" class="icon-time" mode="scaleToFill" src="../../images/xing1.png"></image>
+      <image wx:if="{{fifthWin==1}}" class="icon-time" mode="scaleToFill" src="../../images/xing.png"></image>
+      <image wx:else="{{fifthWin==0}}" class="icon-time" mode="scaleToFill" src="../../images/xing1.png"></image>
+      <image wx:if="{{sixthWin==1}}" class="icon-time" mode="scaleToFill" src="../../images/xing.png"></image>
+      <image wx:else="{{sixthWin==0}}" class="icon-time" mode="scaleToFill" src="../../images/xing1.png"></image>
+      <image wx:if="{{seventhWin==1}}" class="icon-time" mode="scaleToFill" src="../../images/xing.png"></image>
+      <image wx:else="{{seventhWin==0}}" class="icon-time" mode="scaleToFill" src="../../images/xing1.png"></image> -->
+      <!-- <block wx:if="{{score>0}}">
+            <text class="btn-text"></text>
+            <text class="btn-text">{{score}}</text>
+        </block> -->
+      <!-- <text class="btn-text" wx:else>暂无成绩</text> -->
+    </view>
+    <view class="button-time" style="width: 200rpx; margin-left: 15rpx;">
+        <image class="icon-time" mode="scaleToFill" src="../../images/icon_time.png"></image>
+        <text class="btn-text">{{timecount}}"</text>
+    </view>
+    <!-- <view bindtap="onButtonTap" class="btn-ok-view" id="btnBack" style="margin-left: 20rpx;">
+            <image class="btn-ok" mode="scaleToFill" src="../../images/btn.png"></image>
+            <text class="btn-ok-txt">回到首页</text>
+    </view> -->
+    
   </view>
+  <!-- style="margin-left: 100px;" -->
+  <view wx:if="{{again==1}}" bindtap="onButtonTap" class="btn-ok-view" id="btnOk" >
+      <image class="btn-ok" mode="scaleToFill" src="../../images/btn.png"></image>
+      <text class="btn-ok-txt">再来一次</text>
+    </view>
 </view>

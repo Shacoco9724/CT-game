@@ -1,11 +1,21 @@
 // pages/About/About.js
+const util = require('../../utils/util.js')
+const app = getApp();
+//连接云数据库
+const db = wx.cloud.database();
+//获取云数据库中数据集合的引用
+const feedback_db = db.collection('feedback_db');
+//数据库操作符
+const _ = db.command;
 Page({
 
     /**
      * 页面的初始数据
      */
     data: {
-        
+        sex:'',
+        name:'',
+        content:'',
     },
 
     /**
@@ -68,16 +78,23 @@ Page({
           title: '数据提交中。。',
         })
         let db = wx.cloud.database()
-        var {title,author,content}=res.detail.value;
-        db.collection("demolist").add({
+        var {sex,name,content}=res.detail.value;
+        db.collection("feedback_db").add({
             data:{
-                title:title,
-                author:author,
-                content:content
+                // 从全局变量中获取用户信息
+                nickName: app.globalData.hasUserInfo ? app.globalData.userInfo.nickName : '',
+                sex:sex,
+                name:name,
+                content:content,
+                time:util.formatTime(new Date()),
             }
         }).then(res=>{
             wx.hideLoading({
-              success: (res) => {},
+              success: (res) => {
+                  wx.showToast({
+                    title: '提交成功',
+                  })
+              },
             })
         })
     },
